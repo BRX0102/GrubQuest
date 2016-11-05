@@ -11,22 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MainActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".FeedMonster">
-            <intent-filter>
-                <action android:name="android.intent.action.FeedMonster" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".CreateAccount">
-            <intent-filter>
-                <action android:name="android.intent.action.CreateAccount" />
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -38,7 +23,27 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".CustomizeProfile">
+            <intent-filter>
+                <action android:name="android.intent.action.CustomizeProfile" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CustomizeProfile">
+            <intent-filter>
+                <action android:name="android.intent.action.CustomizeProfile" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CustomizeProfile">
+            <intent-filter>
+                <action android:name="android.intent.action.CUSTOMIZE_PROFILE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -18,11 +18,6 @@ public class MainActivity extends AppCompatActivity {
         MyApplication myApp = (MyApplication) getApplicationContext();
 
         Log.d(TAG, "main activity "+myApp.getAddress("a").toString());
+
     }
 }
-
-
-
-
-
-
