@@ -1,13 +1,8 @@
 <resources>
-<<<<<<< HEAD
     <string name="app_name">HungryLittleMonsters</string>
     <string name="monster">Monster 1</string>
     <string name="monster2">Monster 2</string>
     <string name="monster3">Monster 3</string>
-||||||| merged common ancestors
-    <string name="app_name">HungryLittleMonsters</string>
-=======
-    <string name="app_name">Hungry Little Monsters</string>
 
     <string-array name="transporationArray">
         <item>Walking</item>
@@ -15,5 +10,4 @@
         <item>Driving</item>
         <item>Public Transit</item>
     </string-array>
->>>>>>> 3a2673a4ce63e102ec2659ea127eee562c1cf39d
 </resources>
