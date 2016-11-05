@@ -10,4 +10,7 @@
         <item>Driving</item>
         <item>Public Transit</item>
     </string-array>
+
+    <string name="facebook_app_id">1603512753287735</string>
+
 </resources>
