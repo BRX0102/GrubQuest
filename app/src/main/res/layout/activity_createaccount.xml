@@ -37,7 +37,7 @@
             android:layout_margin="6dp" >
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -58,7 +58,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/body0" />
-            </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/PigNose"/>
+            </RelativeLayout>
 
 
             <LinearLayout
