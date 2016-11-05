@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">HungryLittleMonsters</string>
+    <string name="app_name">Hungry Little Monsters</string>
+
+    <string-array name="transporationArray">
+        <item>Walking</item>
+        <item>Biking</item>
+        <item>Driving</item>
+        <item>Public Transit</item>
+    </string-array>
 </resources>
