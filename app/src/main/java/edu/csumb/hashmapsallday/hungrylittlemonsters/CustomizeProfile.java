@@ -14,7 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 /**
- * Created by BRX01 on 11/4/2016.
+ *  Customize Profile takes in the user's weekly budget, preference to cook, and transportation preference.
  */
 
 public class CustomizeProfile extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
@@ -44,7 +44,7 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         MyApplication myApp = (MyApplication) getApplicationContext();
         myApp.setAddress("prefTransportation", parent.getItemAtPosition(position).toString());
-        Log.d(TAG, "Pref Transportation "+myApp.getAddress("prefTransportation").toString());
+        Log.d(TAG, "Pref Transportation "+ myApp.getAddress("prefTransportation"));
     }
 
     @Override
@@ -63,7 +63,7 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
             weeklyBudget = (EditText)findViewById(R.id.weeklyBudget);
             myApp.setAddress("weeklyBudget", weeklyBudget.getText().toString());
 
-            Intent i = new Intent(this, FeedMonster.java);
+            Intent i = new Intent(this, FeedMonster.class);
             this.finish();
             startActivity(i);
         }
