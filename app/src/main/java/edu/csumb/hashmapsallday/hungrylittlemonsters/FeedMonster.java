@@ -21,6 +21,7 @@ public class FeedMonster extends AppCompatActivity {
 
 
     View column1, column2, column3;
+    ImageView monster;
 
 
     @Override
@@ -30,6 +31,7 @@ public class FeedMonster extends AppCompatActivity {
         column1 = (View)findViewById(R.id.item1Column);
         column2 = (View)findViewById(R.id.item2Column);
         column3 = (View)findViewById(R.id.item3Column);
+        monster = ((ImageView)findViewById(R.id.monster));
 //        column1.setOnDragListener(new DragListener());
 //        ((ViewGroup)column1).removeAllViews();
 //        FoodDragItem temp = new FoodDragItem(this);
@@ -38,6 +40,7 @@ public class FeedMonster extends AppCompatActivity {
         setItemView(column1, new FoodDragItem(this), R.drawable.broccoli);
         setItemView(column2, new FoodDragItem(this), R.drawable.broccoli);
         setItemView(column3, new FoodDragItem(this), R.drawable.broccoli);
+        monster.setOnDragListener(new DragListener());
 
     }
 
@@ -66,7 +69,7 @@ public class FeedMonster extends AppCompatActivity {
                     // Dropped foodTile on monster
                     FoodDragItem temp = (FoodDragItem) event.getLocalState();
                     //addStatModifier(FoodDragItem);
-                    //destroy view
+                    temp.setVisibility(View.INVISIBLE);
                     return true;
             }
             return false;
@@ -75,7 +78,7 @@ public class FeedMonster extends AppCompatActivity {
 
     private void setItemView(View column, FoodDragItem item, int itemID){
 
-        column.setOnDragListener(new DragListener());
+        //column.setOnDragListener(new DragListener());
         ((ViewGroup)column).removeAllViews();
         item.setImageResource(itemID);
         ((ViewGroup)column).addView(item);
