@@ -20,3 +20,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "main activity "+myApp.getAddress("a").toString());
     }
 }
+
+
+
+
+
+
