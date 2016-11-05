@@ -16,9 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomizeProfile">
+        <activity android:name=".FeedMonster">
             <intent-filter>
-                <action android:name="android.intent.action.CustomizeProfile" />
+                <action android:name="android.intent.action.FeedMonster" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -26,20 +26,6 @@
         <activity android:name=".CustomizeProfile">
             <intent-filter>
                 <action android:name="android.intent.action.CustomizeProfile" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".CustomizeProfile">
-            <intent-filter>
-                <action android:name="android.intent.action.CustomizeProfile" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".CustomizeProfile">
-            <intent-filter>
-                <action android:name="android.intent.action.CUSTOMIZE_PROFILE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
