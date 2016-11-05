@@ -29,6 +29,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".CreateAccount">
+            <intent-filter>
+                <action android:name="android.intent.action.CreateAccount" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".CustomizeProfile">
             <intent-filter>
                 <action android:name="android.intent.action.CustomizeProfile" />
