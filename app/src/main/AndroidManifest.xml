@@ -23,27 +23,21 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomizeProfile">
+        <activity android:name=".CreateAccount">
             <intent-filter>
-                <action android:name="android.intent.action.CustomizeProfile" />
+                <action android:name="android.intent.action.CreateAccount" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomizeProfile">
+        <activity android:name=".FeedMonster">
             <intent-filter>
-                <action android:name="android.intent.action.CustomizeProfile" />
+                <action android:name="android.intent.action.FeedMonster" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomizeProfile">
-            <intent-filter>
-                <action android:name="android.intent.action.CUSTOMIZE_PROFILE" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
