@@ -57,7 +57,7 @@
                     android:id="@+id/monster"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/monster" />
+                    android:src="@drawable/body0" />
             </LinearLayout>
 
 
@@ -82,7 +82,7 @@
                     android:id="@+id/monster2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/monster2" />
+                    android:src="@drawable/body0" />
 
             </LinearLayout>
 
@@ -107,7 +107,7 @@
                     android:id="@+id/monster3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/monster3" />
+                    android:src="@drawable/body0" />
 
             </LinearLayout>
         </ViewFlipper>
