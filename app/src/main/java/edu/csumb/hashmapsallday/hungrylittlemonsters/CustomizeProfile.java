@@ -33,7 +33,6 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch(position){
             case 0:
-
                 break;
             case 1:
                 break;
