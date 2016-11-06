@@ -170,7 +170,9 @@ public class FeedMonster extends AppCompatActivity {
 
     private void monsterSetFace(View v){
 
-        int selector = new Random().nextInt(3);
+        int selector;
+
+        selector = new Random().nextInt(3);
 
         if (selector == 0) {
             monsterSetFaceHelper(v, R.drawable.crosseye, 1);
@@ -180,25 +182,25 @@ public class FeedMonster extends AppCompatActivity {
             monsterSetFaceHelper(v, R.drawable.crazyeye, 1);
         }
 
+        selector = new Random().nextInt(3);
 
-
-        if (selector ==) {
+        if (selector ==0) {
             monsterSetFaceHelper(v, R.drawable.grinsmile, 2);
-        } else if (selector ==) {
+        } else if (selector ==1) {
             monsterSetFaceHelper(v, R.drawable.smile, 2);
-        } else if (selector ==) {
+        } else if (selector ==2) {
             monsterSetFaceHelper(v, R.drawable.licksmile, 2);
         }
 
 
 
-        if (selector ==) {
-            monsterSetFaceHelper(v, R.drawable.horntail, 3);
-        } else if (selector ==) {
-            monsterSetFaceHelper(v, R.drawable.horns, 3);
-        } else if (selector ==) {
-            monsterSetFaceHelper(v, R.drawable.batwing, 3);
-        }
+//        if (selector ==0) {
+//            monsterSetFaceHelper(v, R.drawable.horntail, 3);
+//        } else if (selector ==1) {
+//            monsterSetFaceHelper(v, R.drawable.horns, 3);
+//        } else if (selector ==2) {
+//            monsterSetFaceHelper(v, R.drawable.batwing, 3);
+//        }
 
 
     }

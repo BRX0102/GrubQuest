@@ -38,9 +38,9 @@ public class CreateAccount extends Activity {
         setContentView(R.layout.activity_createaccount);
         viewFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
 
-        monster1 = (ImageView)findViewById(R.id.monster);
-        monster2 = (ImageView)findViewById(R.id.monster2);
-        monster3 = (ImageView)findViewById(R.id.monster3);
+        monster1 = (ImageView)findViewById(R.id.monsterImage);
+        monster2 = (ImageView)findViewById(R.id.monster2Image);
+        monster3 = (ImageView)findViewById(R.id.monster3Image);
         monster2.setColorFilter(Color.parseColor("#00FF00"), PorterDuff.Mode.MULTIPLY);
         monster3.setColorFilter(Color.parseColor("#FFFF00"), PorterDuff.Mode.MULTIPLY);
 
