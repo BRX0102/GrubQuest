@@ -27,6 +27,20 @@ public class Monster {
         private String color;
 
         public Monster(){
+            monsterName = "";
+            transportation= "";
+            weeklyBudget = "";
+            doCook = "";
+            birthday = "";
+            firstChoice = "";
+            secondChoice = "";
+            thirdChoice = "";
+            eye = "";
+            eyebrows = "";
+            mouth = "";
+            accessory = "";
+            color = "";
+
 
         }
         public Monster(String monsterName) {
