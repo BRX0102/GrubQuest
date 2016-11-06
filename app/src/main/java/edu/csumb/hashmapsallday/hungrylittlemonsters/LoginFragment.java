@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +31,8 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
+
 /**
  * Created by BRX01 on 11/5/2016.
  */
@@ -37,13 +40,13 @@ import android.support.v4.app.Fragment;
 public class LoginFragment extends Fragment{
     LoginButton loginButton;
     AccessToken accessToken;
+    String birthday;
+    String firstNameHint;
     private CallbackManager mCallbackManager;
     private FacebookCallback<LoginResult> mCallback = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
             accessToken = loginResult.getAccessToken();
-            Profile profile = Profile.getCurrentProfile();
-
             GraphRequest request = GraphRequest.newMeRequest(
                     AccessToken.getCurrentAccessToken(),
                     new GraphRequest.GraphJSONObjectCallback() {
@@ -54,11 +57,8 @@ public class LoginFragment extends Fragment{
                             // Application code
                             try {
                                 //testing JSON call
-                                String birthday = object.getString("birthday");
-
-//
-//                                Pass the birthday to the User profile.
-//
+                                birthday = object.getString("birthday");
+                                firstNameHint = object.getString("first_name");
 
                                 Log.d("FBLOGIN", birthday);
                             } catch (JSONException e) {
@@ -68,7 +68,7 @@ public class LoginFragment extends Fragment{
                         }
                     });
             Bundle parameters = new Bundle();
-            parameters.putString("fields", "birthday");
+            parameters.putString("fields", "birthday,first_name");
             request.setParameters(parameters);
             request.executeAsync();
 
@@ -124,7 +124,9 @@ public class LoginFragment extends Fragment{
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        Toast.makeText(getActivity(), birthday, Toast.LENGTH_LONG);
         Intent intent = new Intent(getActivity(),CreateAccount.class);
         startActivity(intent);
+        Toast.makeText(getContext(), birthday, Toast.LENGTH_LONG);
     }
 }
