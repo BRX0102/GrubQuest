@@ -1,6 +1,7 @@
 package edu.csumb.hashmapsallday.hungrylittlemonsters;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+
 /**
  * Created by BRX01 on 11/4/2016.
  */
@@ -22,9 +25,14 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
     private Button submitButton;
     private EditText weeklyBudget;
     private RadioGroup doCook;
+    private MySQLiteHelper database;
+    private String monsterName;
+
+
     String TAG = "Customize";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customize_profile);
 
@@ -42,6 +50,7 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
         MyApplication myApp = (MyApplication) getApplicationContext();
         myApp.setAddress("prefTransportation", parent.getItemAtPosition(position).toString());
         Log.d(TAG, "Pref Transportation "+myApp.getAddress("prefTransportation").toString());
@@ -63,7 +72,10 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
             weeklyBudget = (EditText)findViewById(R.id.weeklyBudget);
             myApp.setAddress("weeklyBudget", weeklyBudget.getText().toString());
 
-            Intent i = new Intent(this, FeedMonster.java);
+            database.setCustomizeProfile(monsterName, doCookString, weeklyBudget.getText().toString(), myApp.getAddress("prefTransportation").toString());
+
+
+            Intent i = new Intent(this, FeedMonster.class);
             this.finish();
             startActivity(i);
         }
