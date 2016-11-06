@@ -139,7 +139,7 @@ public class CreateAccount extends Activity {
         customizeProfile.putExtras(b);
 
         startActivity(customizeProfile);
-
+        this.finish();
 
 
     }
