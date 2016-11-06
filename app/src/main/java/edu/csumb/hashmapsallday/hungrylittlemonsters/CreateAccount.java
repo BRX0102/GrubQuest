@@ -6,20 +6,30 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
-public class CreateAccount extends Activity implements View.OnClickListener {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class CreateAccount extends Activity {
     private ViewFlipper viewFlipper;
     private float lastX;
-    Monster newMonster;
+    private Monster newMonster;
     ImageView monster1;
     ImageView monster2;
     ImageView monster3;
     private String avatarName;
+    private String birthday = "";
+    private String userName = "";
+//    private MySQLiteHelper database;
+    String TAG = "CreateAccount";
+
 
 
     @Override
@@ -33,6 +43,11 @@ public class CreateAccount extends Activity implements View.OnClickListener {
         monster3 = (ImageView)findViewById(R.id.monster3);
         monster2.setColorFilter(Color.parseColor("#00FF00"), PorterDuff.Mode.MULTIPLY);
         monster3.setColorFilter(Color.parseColor("#FFFF00"), PorterDuff.Mode.MULTIPLY);
+
+        /*Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        userName = extras.getString("FIRSTNAME");
+        birthday = extras.getString("BIRTHDAY");*/
     }
 
     // Using the following method, we will handle all screen swaps.
@@ -81,27 +96,53 @@ public class CreateAccount extends Activity implements View.OnClickListener {
         return false;
     }
 
-    @Override
-    public void onClick(View v) {
-        if(v.getId()==R.id.submitAvatar){
-            avatarName = ((EditText)findViewById(R.id.monsterName)).getText().toString();
-            //Karen please add this name to your database.
+//    @Override
+//    public void onClick(View v) {
+//        if(v.getId()==R.id.submitAvatar){
+//
+//            this.finish();
+//        }
+//    }
 
-            Intent customizeProfile = new Intent(this, CustomizeProfile.class);
-            startActivity(customizeProfile);
-            this.finish();
-        }
-    }
+    public void submitMonsterData(View v){
+        avatarName = ((EditText)findViewById(R.id.monsterName)).getText().toString();
+        //Karen please add this name to your database.
 
-    public void submitMonsterData(){
+
         // Savethis to monster.name=((EditText)findViewById(R.id.monsterName)).getText().toString();
         int monsterID = viewFlipper.getDisplayedChild();
 
         //ColorFilter color = ((ImageView)findViewById(monsterID)).getColorFilter();
 
-       // newMonster.setName((EditText)findViewById(R.id.monsterName).getText().toString());
+        newMonster = new Monster();
+//        database = new MySQLiteHelper(getApplicationContext());
+
+        newMonster.setName(avatarName);
+
+//        database.setMonsterName(newMonster);
+
         newMonster.setColor(Integer.toString(monsterID));
+        newMonster.setBirthday(birthday);
+
+        Log.d(TAG, "Color:" + Integer.toString(monsterID));
+        Log.d(TAG, "NAME:" + avatarName);
+        Log.d(TAG, "Color:" + birthday);
+//        Log.d(TAG, Integer.toString(database.setCreateAccount(avatarName, newMonster)));
+        //database.setCreateAccount(avatarName, newMonster);
+
+        Intent customizeProfile = new Intent(this, CustomizeProfile.class);
+        Bundle b = new Bundle();
+
+        b.putString("AVATARNAME", avatarName);
+        b.putString("BIRTHDAY", birthday);
+
+        customizeProfile.putExtras(b);
+
+        startActivity(customizeProfile);
+
 
 
     }
+
+
 }

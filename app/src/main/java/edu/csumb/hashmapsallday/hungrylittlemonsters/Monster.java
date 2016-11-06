@@ -123,7 +123,7 @@ public class Monster {
 
         @Override
         public String toString() {
-            return "Monster [monster_name =" + monsterName + "]";
+            return "Monster [monster_name =" + monsterName + " Trans= "+ transportation + " COOK?= " + doCook +"]";
         }
 
 

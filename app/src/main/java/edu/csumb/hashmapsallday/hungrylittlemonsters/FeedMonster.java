@@ -1,6 +1,7 @@
 package edu.csumb.hashmapsallday.hungrylittlemonsters;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
@@ -26,22 +27,35 @@ public class FeedMonster extends AppCompatActivity {
     View column1, column2, column3;
     ImageView monster;
     private static Integer counter = 0;
-    private MySQLiteHelper database;
     private Monster newMonster;
     private String monsterName;
     private String firstChoice;
     private String secondChoice;
     private String thirdChoice;
+    private String birthday;
+    private String doCook;
+    private String transportation;
+    private String budget;
+    MySQLiteHelper database;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        database = new MySQLiteHelper(this);
         setContentView(R.layout.activity_feedmonster);
         column1 = (View)findViewById(R.id.item1Column);
         column2 = (View)findViewById(R.id.item2Column);
         column3 = (View)findViewById(R.id.item3Column);
         monster = ((ImageView)findViewById(R.id.monster));
+
+        Intent i = getIntent();
+        monsterName = i.getStringExtra("AVATARNAME");
+        birthday = i.getStringExtra("BIRTHDAY");
+        doCook = i.getStringExtra("COOKING");
+        transportation = i.getStringExtra("TRANS");
+        budget = i.getStringExtra("BUDGET");
+
 
         startIdleAnimation(monster);
 

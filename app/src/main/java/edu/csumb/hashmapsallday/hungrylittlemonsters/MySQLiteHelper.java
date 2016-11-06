@@ -76,6 +76,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
+        //this.DATABASE_PATH = context.getApplicationInfo().dataDir;
+    }
+
+    public MySQLiteHelper(Context context, String db_name, String something, Integer version){
+        super(context, db_name, null, version);
+        this.context = context;
         this.DATABASE_PATH = context.getApplicationInfo().dataDir;
     }
 
@@ -186,7 +192,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
         this.onCreate(db);
     }
 
-    public void addMonster(Monster monster){
+    public void setMonsterName(Monster monster){
         Log.d(TAG, "addMonster() - " + monster.toString());
         // 1. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
@@ -204,26 +210,27 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
         db.close();
     }
 
-    public String getMonster(String name){
-        String query = "SELECT * FROM " + TABLE_MONSTER + " WHERE " + KEY_MONSTER_NAME + " = ?" + new String[]{name};
+    public Monster getMonster(String name){
+        String query = "SELECT * FROM " + TABLE_MONSTER + " WHERE " + KEY_MONSTER_NAME + "=?" + name;
 
         // 2. get reference to writable DB
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         // 3. go over each row, build book and add it to list
         Monster monster = null;
-        //String name = "";
 
         if (cursor.moveToFirst()) {
             do {
                 monster = new Monster();
                 monster.setName(cursor.getString(0));
+                monster.setCooking(cursor.getString(1));
+                monster.setTransportation(cursor.getString(2));
                 name = monster.getName();
             } while (cursor.moveToNext());
         }
 
         // return name
-        return name;
+        return monster;
     }
 
     public String getMonsterName(){
@@ -279,7 +286,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
     }
 
     public int setCreateAccount(String name, Monster monster){
-
+        Log.d(TAG, "Entered Set Create Account");
         //String birthday, String} eyebrows, String eye, String mouth, String accessory){
 
         Boolean nameExist = checkMonsterName(name);
@@ -288,15 +295,20 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 
             SQLiteDatabase db = this.getWritableDatabase();
 
+            Log.d(TAG, "Before Values");
+
             ContentValues values = new ContentValues();
-            values.put(KEY_NAME, monster.getName());
-            values.put(KEY_BIRTHDAY, monster.getBirthday());
+            values.put(KEY_MONSTER_NAME, monster.getName());
+            //values.put(KEY_BIRTHDAY, monster.getBirthday());
             values.put(KEY_COLOR, monster.getColor());
 
+            Log.d(TAG, "update");
+
             // updating row
-            return db.update(TABLE_MONSTER, values, KEY_NAME + " = ?",
+            return db.update(TABLE_MONSTER, values, KEY_MONSTER_NAME + "=?",
                     new String[]{name});
         }
+        Log.d(TAG, "SETCREATEERROR");
 
         return 0;
 
@@ -317,7 +329,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
             values.put(KEY_TRANSPORTATION, monster.getTransportation()); // get transportation
 
             // updating row
-            return db.update(TABLE_MONSTER, values, KEY_NAME + " = ?",
+            return db.update(TABLE_MONSTER, values, KEY_NAME + "=?",
                     new String[]{name});
 
         }
