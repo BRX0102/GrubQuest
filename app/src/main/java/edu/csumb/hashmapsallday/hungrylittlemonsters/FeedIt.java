@@ -94,7 +94,6 @@ public class FeedIt extends AppCompatActivity {
                     v.invalidate();
                     return true;
                 case DragEvent.ACTION_DROP:
-                    counter++;
                     startWaveAnimation(monster);
 
                     // Dropped foodTile on monster
@@ -185,20 +184,6 @@ public class FeedIt extends AppCompatActivity {
 
 
         Intent i = new Intent(this, FeedMe.class);
-
-        Bundle b = new Bundle();
-
-        b.putString("AVATARNAME", monsterName);
-        b.putString("BIRTHDAY", birthday);
-        b.putString("COOKING", doCook);
-        b.putString("TRANS", transportation);
-        b.putString("BUDGET", budget);
-        b.putString("FIRST", firstChoice);
-        b.putString("SECOND", secondChoice);
-        b.putString("THIRD", thirdChoice);
-
-        i.putExtras(b);
-
         this.finish();
         startActivity(i);
 
