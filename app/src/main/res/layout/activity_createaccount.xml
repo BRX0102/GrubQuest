@@ -30,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
+
         <ViewFlipper
             android:id="@+id/viewflipper"
             android:layout_width="fill_parent"
@@ -40,46 +41,33 @@
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:gravity="center"
-                android:orientation="vertical" >
+                android:gravity="center">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Fred"
-                    android:textColor="#b7102f"
-                    android:textSize="25dp">
-                </TextView>
 
                 <ImageView
-                    android:layout_marginTop="15dp"
                     android:id="@+id/monster"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/body0" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/PigNose"/>
+                    android:src="@drawable/monstercrosseye"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/toothygrin"/>
+
             </RelativeLayout>
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:orientation="vertical" >
-
-                <TextView
-                    android:layout_marginTop="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Bob"
-                    android:textColor="#191975"
-                    android:textSize="25dp"
-                    android:textStyle="italic" >
-                </TextView>
 
                 <ImageView
                     android:layout_marginTop="15dp"
@@ -88,23 +76,24 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/body0" />
 
-            </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/monstercrosseye"/>
 
-            <LinearLayout
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/toothygrin"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:orientation="vertical" >
 
-                <TextView
-                    android:layout_marginTop="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sam"
-                    android:textColor="#191975"
-                    android:textSize="25dp"
-                    android:textStyle="italic" >
-                </TextView>
 
                 <ImageView
                     android:layout_marginTop="15dp"
@@ -113,7 +102,17 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/body0" />
 
-            </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/monstercrosseye"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/toothygrin"/>
+
+            </RelativeLayout>
         </ViewFlipper>
     </LinearLayout>
 
