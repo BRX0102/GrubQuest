@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.util.Log;
 import android.view.DragEvent;
 
 import android.view.View;
@@ -60,7 +61,6 @@ public class FeedMonster extends AppCompatActivity {
     private class DragListener implements View.OnDragListener {
 
         public boolean onDrag(View v, DragEvent event) {
-            counter++;
 
             int action = event.getAction();
             switch (action) {
@@ -81,6 +81,8 @@ public class FeedMonster extends AppCompatActivity {
                     v.invalidate();
                     return true;
                 case DragEvent.ACTION_DROP:
+                    counter++;
+
                     // Dropped foodTile on monster
                     FoodDragItem temp = (FoodDragItem) event.getLocalState();
 
@@ -114,6 +116,7 @@ public class FeedMonster extends AppCompatActivity {
 
     // Still need to add choices to newMonster and then add newMonster to database
     // newMonster.setChoices(firstChoice, secondChoice, thirdChoice);
-    // database.setFeedMonster(monsterName, newMonster);
+    // Log.d(TAG, "ADD Customize Profile: " + database.setCustomizeProfile(monsterName, newMonster));
+
 
 }
