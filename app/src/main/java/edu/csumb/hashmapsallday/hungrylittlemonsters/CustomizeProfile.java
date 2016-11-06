@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 /**
- * Created by BRX01 on 11/4/2016.
+ *  Customize Profile takes in the user's weekly budget, preference to cook, and transportation preference.
  */
 
 public class CustomizeProfile extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
@@ -32,7 +32,6 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
     String TAG = "Customize";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customize_profile);
 
@@ -50,7 +49,6 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
         MyApplication myApp = (MyApplication) getApplicationContext();
         myApp.setAddress("prefTransportation", parent.getItemAtPosition(position).toString());
         Log.d(TAG, "Pref Transportation "+myApp.getAddress("prefTransportation").toString());
