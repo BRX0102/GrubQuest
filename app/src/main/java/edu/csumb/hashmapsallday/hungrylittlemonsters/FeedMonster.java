@@ -94,7 +94,7 @@ public class FeedMonster extends AppCompatActivity {
                     }
                     else if(counter == 3){
                         thirdChoice = Integer.toString(temp.getId());
-                        //submitMonsterPreferences();
+                        submitMonsterPreferences();
                     }
 
                     //addStatModifier(FoodDragItem);
@@ -160,17 +160,17 @@ public class FeedMonster extends AppCompatActivity {
         monster.setOnDragListener(new DragListener());
     }
 
-//    private void submitMonsterPreferences(){
-//        Monster newMonster = new Monster();
-//
-//        newMonster.setChoices(firstChoice,secondChoice,thirdChoice);
-//        newMonster.setMonsterAttributes();
-//
-//        Intent i = new Intent(this, FeedMe.class);
-//        this.finish();
-//        startActivity(i);
-//
-//    }
+    private void submitMonsterPreferences(){
+        Monster newMonster = new Monster();
+
+        newMonster.setChoices(firstChoice,secondChoice,thirdChoice);
+        //newMonster.setMonsterAttributes();
+
+        Intent i = new Intent(this, FeedMe.class);
+        this.finish();
+        startActivity(i);
+
+    }
 
     // Still need to add choices to newMonster and then add newMonster to database
     // newMonster.setChoices(firstChoice, secondChoice, thirdChoice);
