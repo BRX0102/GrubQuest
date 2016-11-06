@@ -70,13 +70,6 @@ public class FeedIt extends AppCompatActivity {
         startIdleAnimation(monster);
 
         resetActivity(null);
-        //monsterDefaultFace(findViewById(R.id.monsterColumn));
-//        column1.setOnDragListener(new DragListener());
-//        ((ViewGroup)column1).removeAllViews();
-//        FoodDragItem temp = new FoodDragItem(this);
-//        temp.setImageResource(R.drawable.broccoli);
-//        ((ViewGroup)column1).addView(temp);
-
 
     }
 
@@ -186,7 +179,6 @@ public class FeedIt extends AppCompatActivity {
         setItemView(column1, new FoodDragItem(this), R.drawable.burger_bigger);
         monster.setOnDragListener(new DragListener());
         monsterDefaultFace(findViewById(R.id.monsterColumn));
-        counter = 0;
     }
 
     private void submitMonsterPreferences(){
