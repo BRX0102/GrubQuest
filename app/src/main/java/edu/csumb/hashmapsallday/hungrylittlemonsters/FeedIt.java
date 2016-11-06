@@ -70,13 +70,6 @@ public class FeedIt extends AppCompatActivity {
         startIdleAnimation(monster);
 
         resetActivity(null);
-        //monsterDefaultFace(findViewById(R.id.monsterColumn));
-//        column1.setOnDragListener(new DragListener());
-//        ((ViewGroup)column1).removeAllViews();
-//        FoodDragItem temp = new FoodDragItem(this);
-//        temp.setImageResource(R.drawable.broccoli);
-//        ((ViewGroup)column1).addView(temp);
-
 
     }
 
@@ -101,7 +94,6 @@ public class FeedIt extends AppCompatActivity {
                     v.invalidate();
                     return true;
                 case DragEvent.ACTION_DROP:
-                    counter++;
                     startWaveAnimation(monster);
 
                     // Dropped foodTile on monster
@@ -159,42 +151,7 @@ public class FeedIt extends AppCompatActivity {
 
     }
 
-    private void monsterSetFace(View v){
 
-        int selector;
-
-        selector = new Random().nextInt(3);
-
-        if (selector == 0) {
-            monsterSetFaceHelper(v, R.drawable.crosseye, 1);
-        } else if (selector == 1) {
-            monsterSetFaceHelper(v, R.drawable.closereyes, 1);
-        } else if (selector == 2) {
-            monsterSetFaceHelper(v, R.drawable.crazyeye, 1);
-        }
-
-        selector = new Random().nextInt(3);
-
-        if (selector ==0) {
-            monsterSetFaceHelper(v, R.drawable.grinsmile, 2);
-        } else if (selector ==1) {
-            monsterSetFaceHelper(v, R.drawable.smile, 2);
-        } else if (selector ==2) {
-            monsterSetFaceHelper(v, R.drawable.licksmile, 2);
-        }
-
-
-
-//        if (selector ==0) {
-//            monsterSetFaceHelper(v, R.drawable.horntail, 3);
-//        } else if (selector ==1) {
-//            monsterSetFaceHelper(v, R.drawable.horns, 3);
-//        } else if (selector ==2) {
-//            monsterSetFaceHelper(v, R.drawable.batwing, 3);
-//        }
-
-
-    }
 
     private void monsterSetFaceHelper(View v, int drawableID, int selector){
 
@@ -214,36 +171,19 @@ public class FeedIt extends AppCompatActivity {
 
     public void resetActivity(View v){
         column1 = (View)findViewById(R.id.item1Column);
-        column2 = (View)findViewById(R.id.item2Column);
-        column3 = (View)findViewById(R.id.item3Column);
         monster = ((ImageView)findViewById(R.id.monster));
 
         startIdleAnimation(monster);
 
-        setItemView(column1, new FoodDragItem(this), R.drawable.burger);
+        setItemView(column1, new FoodDragItem(this), R.drawable.burger_bigger);
         monster.setOnDragListener(new DragListener());
         monsterDefaultFace(findViewById(R.id.monsterColumn));
-        counter = 0;
     }
 
     private void submitMonsterPreferences(){
 
 
         Intent i = new Intent(this, FeedMe.class);
-
-        Bundle b = new Bundle();
-
-        b.putString("AVATARNAME", monsterName);
-        b.putString("BIRTHDAY", birthday);
-        b.putString("COOKING", doCook);
-        b.putString("TRANS", transportation);
-        b.putString("BUDGET", budget);
-        b.putString("FIRST", firstChoice);
-        b.putString("SECOND", secondChoice);
-        b.putString("THIRD", thirdChoice);
-
-        i.putExtras(b);
-
         this.finish();
         startActivity(i);
 
