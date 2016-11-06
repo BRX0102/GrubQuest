@@ -285,6 +285,33 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
         return isTrue;
     }
 
+    public Location randomLatLon(){
+        // 1. build the query
+        String query = "SELECT * FROM " + TABLE_LOCATIONS + " ORDER BY RANDOM() " + "LIMIT 1";
+
+        // 2. get reference to writable DB
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // 3. go over each row, build book and add it to list
+        //Monster monster = null;
+        String temp_name;
+        Boolean isTrue = false;
+        Location location = null;
+
+        if (cursor.moveToFirst()) {
+            {
+                location = new Location();
+                location.setPlace(cursor.getString(1));
+                location.setLatitude(cursor.getString(2));
+                location.setLongitude(cursor.getString(3));
+
+            } while (cursor.moveToNext());
+        }
+
+        return location;
+    }
+
     public int setCreateAccount(String name, Monster monster){
         Log.d(TAG, "Entered Set Create Account");
         //String birthday, String} eyebrows, String eye, String mouth, String accessory){
@@ -425,4 +452,27 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
     }
 
 
+    public void createMonster(Monster monster) {
+        Log.d(TAG, "CreateMonster() - " + monster.toString());
+        // 1. get reference to writable DB
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // 2. create ContentValues to add key "column"/value
+        ContentValues values = new ContentValues();
+        values.put(KEY_MONSTER_NAME, monster.getName()); // get name
+        values.put(KEY_BUDGET, monster.getBudget());
+        values.put(KEY_FIRST_CHOICE, monster.getFirstChoice());
+        values.put(KEY_SECOND_CHOICE, monster.getSecondChoice());
+        values.put(KEY_THIRD_CHOICE, monster.getThirdChoice());
+        values.put(KEY_TRANSPORTATION, monster.getTransportation());
+        values.put(KEY_ICOOK, monster.getCook());
+
+        // 3. insert
+        db.insert(TABLE_MONSTER, // table
+                null, //nullColumnHack
+                values); // key/value -> keys = column names/ values = column values
+
+        // 4. close - release the reference of writable DB
+        db.close();
+    }
 }

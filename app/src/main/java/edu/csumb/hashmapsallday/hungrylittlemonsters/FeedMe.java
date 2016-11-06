@@ -40,6 +40,17 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
     private Toast toast;
     private Context thisContext;
     private Handler mainHandler;
+    private String monsterName;
+    private String firstChoice;
+    private String secondChoice;
+    private String thirdChoice;
+    private String birthday;
+    private String doCook;
+    private String transportation;
+    private String budget;
+    private MySQLiteHelper database;
+    private Location tempLocation;
+    private String TAG = "FEEDME";
 
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
@@ -48,6 +59,30 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feed_me);
+
+        //Get Data Through Bundle
+        database = new MySQLiteHelper(this);
+        Intent i = getIntent();
+        monsterName = i.getStringExtra("AVATARNAME");
+        birthday = i.getStringExtra("BIRTHDAY");
+        doCook = i.getStringExtra("COOKING");
+        transportation = i.getStringExtra("TRANS");
+        budget = i.getStringExtra("BUDGET");
+        firstChoice = i.getStringExtra("FIRST");
+        secondChoice = i.getStringExtra("SECOND");
+        thirdChoice = i.getStringExtra("THIRD");
+
+        // Create Monster Object
+        Monster newMonster = new Monster();
+        newMonster.setName(monsterName);
+        newMonster.setBirthday(birthday);
+        newMonster.setCooking(doCook);
+        newMonster.setTransportation(transportation);
+        newMonster.setWeeklyBudget(budget);
+        newMonster.setChoices(firstChoice,secondChoice,thirdChoice);
+
+        // Add Monster To Database
+        database.createMonster(newMonster);
 
 
          image1 =(Button) findViewById(R.id.image1);
@@ -186,6 +221,15 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
                                             set.setTarget(image1);
                                             set.start();
                                             Intent myIntent = new Intent(getApplicationContext(), CardBack.class);
+                                            //Log.d(TAG, database.randomLatLon().toString());
+                                            tempLocation = database.randomLatLon();
+                                            Bundle b = new Bundle();
+                                            b.putString("NAME", tempLocation.getPlace());
+                                            b.putString("LATITUDE", tempLocation.getLatitude());
+                                            b.putString("LONGITUDE", tempLocation.getLongitude());
+                                            myIntent.putExtras(b);
+
+
                                             startActivity(myIntent);
                                         }
                                     });
@@ -248,6 +292,14 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
                                             set.setTarget(image2);
                                             set.start();
                                             Intent myIntent = new Intent(getApplicationContext(), CardBack.class);
+                                            tempLocation = database.randomLatLon();
+
+                                            Bundle b = new Bundle();
+                                            b.putString("NAME", tempLocation.getPlace());
+                                            b.putString("LATITUDE", tempLocation.getLatitude());
+                                            b.putString("LONGITUDE", tempLocation.getLongitude());
+                                            myIntent.putExtras(b);
+
                                             startActivity(myIntent);
                                         }
                                     });
@@ -308,6 +360,13 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
                                             set.setTarget(image3);
                                             set.start();
                                             Intent myIntent = new Intent(getApplicationContext(), CardBack.class);
+                                            tempLocation = database.randomLatLon();
+                                            Bundle b = new Bundle();
+                                            b.putString("NAME", tempLocation.getPlace());
+                                            b.putString("LATITUDE", tempLocation.getLatitude());
+                                            b.putString("LONGITUDE", tempLocation.getLongitude());
+                                            myIntent.putExtras(b);
+
                                             startActivity(myIntent);
                                         }
                                     });

@@ -42,6 +42,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 //ADDED FOR TIMER
@@ -94,6 +95,12 @@ public class FeedMap extends FragmentActivity implements OnMapReadyCallback, Con
     String businessName = "Google";
     String businessLatitude = "37.421707";
     String businessLongitude = "-122.084231";
+
+    private double DLatitude = 37.421707;
+    private double DLongtitude = -122.084231;
+
+    private int radiusThreshhold = 300;
+    private double distance = -1;
     /////////////////////////////////////////////////////////
 
     /////////////////////////////////////////////////////////////
@@ -114,9 +121,9 @@ public class FeedMap extends FragmentActivity implements OnMapReadyCallback, Con
         /////////////////////////////////////////////////////
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
-            businessName = bundle.getString("name");
-            businessLatitude = bundle.getString("latitude");
-            businessLongitude = bundle.getString("longitude");
+            businessName = bundle.getString("NAME");
+            businessLatitude = bundle.getString("LATITUDE");
+            businessLongitude = bundle.getString("LONGITUDE");
         }
         ////////////////////////////////////////////////////
 
@@ -152,8 +159,11 @@ public class FeedMap extends FragmentActivity implements OnMapReadyCallback, Con
         //CalculationByDistance(latLng, latLng2);
 
         //set for BIT
-        destCoords = new LatLng(36.652389, -121.797291);
+        //destCoords = new LatLng(36.652389, -121.797291);
+        DLatitude = Double.parseDouble(businessLatitude);
+        DLongtitude = Double.parseDouble(businessLongitude);
 
+        destCoords = new LatLng(DLatitude, DLongtitude);
         //when connected gets the distance
         //CalculationByDistance(currCoords, destCoords);
         /////////////////////////////////////
@@ -388,7 +398,7 @@ public class FeedMap extends FragmentActivity implements OnMapReadyCallback, Con
                     Log.d(TAG, "permission denied");
 
                     //RETURN TO ORIGINAL ACTIVITY
-                    Intent i = new Intent(getApplicationContext(), Login.class);
+                    Intent i = new Intent(getApplicationContext(), FeedMe.class);
                     startActivity(i);
                 }
                 return;
@@ -460,9 +470,9 @@ public class FeedMap extends FragmentActivity implements OnMapReadyCallback, Con
 
         Marker currentMarker = mMap.addMarker(new MarkerOptions()
                 .position(destCoords)
-                .title("Jack in the Box")
-                .snippet("Come and feed your monster :D")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_media_play)));
+                .title(businessName)
+                .snippet("Feed Monster Here :)")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.burger)));
         //.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
         ///////////////////////////
@@ -597,7 +607,7 @@ public class FeedMap extends FragmentActivity implements OnMapReadyCallback, Con
         super.onPause();
         Log.d(TAG, "onPause()");
         //pauses the timer
-        timerHandler.removeCallbacks(timerRunnable);
+        //timerHandler.removeCallbacks(timerRunnable);
 
         //Disconnect from API onPause()
         if (mGoogleApiClient.isConnected()) {
@@ -645,22 +655,49 @@ public class FeedMap extends FragmentActivity implements OnMapReadyCallback, Con
             Log.d(TAG, "Current latitude: "+currCoords.latitude+" longitude: "+currCoords.longitude);
             Log.d(TAG, "Destination latitude: "+destCoords.latitude+" longitude: "+destCoords.longitude);
 
-            int dist = getKM(currCoords, destCoords);
-            /*
-            if(dist  <=  1 ){
-                dist = getM(currCoords, destCoords);
-                Log.d(TAG, "Distance: "+dist+" Meters");
-                Toast.makeText(this, "Distance: "+dist+" Meters", Toast.LENGTH_SHORT).show();
+            int kmDist = getKM(currCoords, destCoords);
+            int mDist = getM(currCoords, destCoords);
+            double aDist = CalculationByDistance(currCoords, destCoords);
+
+            //DISTANCES
+            //////////////////////////////////////////////////////////
+            if(mDist  >  1 && aDist < 1){
+                Log.d(TAG, "Distance: "+mDist+" Meters");
+                Toast.makeText(this, "Distance: "+mDist+" Meters", Toast.LENGTH_SHORT).show();
             }
             else{
-                Log.d(TAG, "Distance: "+dist+"KM");
-                Toast.makeText(this, "Distance: "+dist+" KM", Toast.LENGTH_SHORT).show();
+
+                if(mDist == 0 && aDist < 1 ){
+                    double tempDist = aDist*1000;
+
+                    //formats the double
+                    NumberFormat formatter = new DecimalFormat("#0.00");
+
+                    Log.d(TAG, "Distance: "+formatter.format(tempDist)+" Meters");
+                    Toast.makeText(this, "Distance: "+formatter.format(tempDist)+" Meters", Toast.LENGTH_SHORT).show();
+                    distance = tempDist;
+                }
+                else {
+                    Log.d(TAG, "Distance: "+getKM(currCoords, destCoords)+" KM");
+                    Toast.makeText(this, "Distance: "+getKM(currCoords, destCoords)+" KM", Toast.LENGTH_SHORT).show();
+                }
             }
 
+            //only starts checking for the distance when the person is within 100 meters
+            if(distance < radiusThreshhold && aDist < 1){
+                Log.d(TAG, "within reach");
+
+                //LAUNCH INTENT TO FeedIt Here
+                //////////////////////////////////
+
+                //////////////////////////////////
+            }
+
+            /////////////////////////////////////////////////////////
+            /*
+            Double aDist = CalculationByDistance(currCoords, destCoords);
+            Toast.makeText(this, "Distance: "+ aDist/1000 +" Meters", Toast.LENGTH_SHORT).show();
             */
-
-            Toast.makeText(this, "Distance: "+ (CalculationByDistance(currCoords, destCoords)/1000)+" Meters", Toast.LENGTH_SHORT).show();
-
         }
     }
 

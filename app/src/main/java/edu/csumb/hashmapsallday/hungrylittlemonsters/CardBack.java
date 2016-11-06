@@ -11,15 +11,37 @@ import android.widget.Button;
  */
 
 public class CardBack extends AppCompatActivity {
+
+    private String latitude;
+    private String longitude;
+    private String name;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.card_back);
+        Intent i = getIntent();
+        latitude = i.getStringExtra("LATITUDE");
+        longitude = i.getStringExtra("LONGITUDE");
+        name = i.getStringExtra("NAME");
+
         Button acceptButton = (Button) findViewById(R.id.acceptQuestButton);
         Button quitButton = (Button) findViewById(R.id.noAcceptQuestButton);
+
+        //ACCEPT BUTTON
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                //
+                Intent myIntent = new Intent(getApplicationContext(), FeedMap.class);
+                Bundle b = new Bundle();
+                b.putString("NAME", name);
+                b.putString("LATITUDE", latitude);
+                b.putString("LONGITUDE", longitude);
+                myIntent.putExtras(b);
+
+
+                startActivity(myIntent);
             }
         });
         quitButton.setOnClickListener(new View.OnClickListener() {
@@ -27,6 +49,8 @@ public class CardBack extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myIntent = new Intent(getApplicationContext(), FeedMe.class);
                 startActivity(myIntent);
+
+
             }
         });
     }

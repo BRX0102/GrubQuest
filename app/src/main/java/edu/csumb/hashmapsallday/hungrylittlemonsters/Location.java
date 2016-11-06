@@ -42,13 +42,18 @@ public class Location {
         return latitude;
     }
 
-    public String getLongitude(){
-        return longitude;
-    }
+    public String getLongitude(){ return longitude; }
 
+    public String getName(){ return name; }
+
+    public String getPlace() {
+        return place;
+    }
 
     @Override
     public String toString() {
         return "Monster [Name = " + name + " Latitude= "+ latitude + " Longitude= " + longitude + " Address= " + address + "]";
     }
+
+
 }
