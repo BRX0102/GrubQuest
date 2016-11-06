@@ -27,6 +27,7 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
     private RadioGroup doCook;
     private MySQLiteHelper database;
     private String monsterName;
+    private Monster monster;
 
 
     String TAG = "Customize";
@@ -52,6 +53,7 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
         MyApplication myApp = (MyApplication) getApplicationContext();
         myApp.setAddress("prefTransportation", parent.getItemAtPosition(position).toString());
         Log.d(TAG, "Pref Transportation "+myApp.getAddress("prefTransportation").toString());
+        monster.setTransportation(myApp.getAddress("prefTransportation").toString());
     }
 
     @Override
@@ -66,12 +68,13 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
             doCook = (RadioGroup)findViewById(R.id.iCook);
             String doCookString = ((RadioButton)findViewById(doCook.getCheckedRadioButtonId())).getText().toString();
             myApp.setAddress("doCook", doCookString);
+            monster.setCooking(doCookString);
 
             weeklyBudget = (EditText)findViewById(R.id.weeklyBudget);
             myApp.setAddress("weeklyBudget", weeklyBudget.getText().toString());
+            monster.setWeeklyBudget(weeklyBudget.getText().toString());
 
-            database.setCustomizeProfile(monsterName, doCookString, weeklyBudget.getText().toString(), myApp.getAddress("prefTransportation").toString());
-
+            Log.d(TAG, "ADD Customize Profile: " + database.setCustomizeProfile(monsterName, monster));
 
             Intent i = new Intent(this, FeedMonster.class);
             this.finish();

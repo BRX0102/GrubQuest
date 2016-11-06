@@ -60,6 +60,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
     private static final String KEY_SECOND_CHOICE = "second_choice";
     private static final String KEY_THIRD_CHOICE = "third_choice";
     private static final String KEY_BIRTHDAY = "birthday";
+    private static final String KEY_EYEBROWS = "eyebrows";
+    private static final String KEY_EYE = "eye";
+    private static final String KEY_MOUTH = "mouth";
+    private static final String KEY_ACCESSORY = "accessory";
 
     // Database Version
     private static final int DATABASE_VERSION = 9;
@@ -102,7 +106,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
                 "first_choice TEXT, " +
                 "second_choice TEXT, " +
                 "third_choice TEXT, " +
-                "birthday TEXT)";
+                "birthday TEXT, " +
+                "eyebrows TEXT, " +
+                "eye TEXT, " +
+                "mouth TEXT, " +
+                "accessory TEXT)";
 
         // execute an SQL statement to create the table
         db.execSQL(CREATE_LOCATION_TABLE);
@@ -194,6 +202,28 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
         db.close();
     }
 
+    public String getMonster(String name){
+        String query = "SELECT * FROM " + TABLE_MONSTER + " WHERE " + KEY_MONSTER_NAME + " = ?" + new String[]{name};
+
+        // 2. get reference to writable DB
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        // 3. go over each row, build book and add it to list
+        Monster monster = null;
+        //String name = "";
+
+        if (cursor.moveToFirst()) {
+            do {
+                monster = new Monster();
+                monster.setName(cursor.getString(0));
+                name = monster.getName();
+            } while (cursor.moveToNext());
+        }
+
+        // return name
+        return name;
+    }
+
     public String getMonsterName(){
         String query = "SELECT monster_name FROM " + TABLE_MONSTER;
 
@@ -212,34 +242,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
             } while (cursor.moveToNext());
         }
 
-
         // return name
         return name;
     }
-
-   /* public void setBasedOnName(Monster monster){
-        // 1. get reference to writable DB
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        // 2. create ContentValues to add key "column"/value
-        ContentValues values = new ContentValues();
-        values.put(KEY_MONSTER_NAME, monster.getName()); // get name
-        values.put(KEY_BUDGET, monster.getName()); // get name
-        values.put(KEY_ICOOK, monster.getName()); // get name
-        values.put(KEY_TRANSPORTATION, monster.getName()); // get name
-        values.put(KEY_FIRST_CHOICE, monster.getName()); // get name
-        values.put(KEY_SECOND_CHOICE, monster.getName()); // get name
-        values.put(KEY_THIRD_CHOICE, monster.getName()); // get name
-        values.put(KEY_BIRTHDAY, monster.getName()); // get name
-
-        // 3. insert
-        db.insert(TABLE_MONSTER, // table
-                null, //nullColumnHack
-                values); // key/value -> keys = column names/ values = column values
-
-        // 4. close - release the reference of writable DB
-        db.close();
-    }*/
 
     public boolean checkMonsterName (String name) {
 
@@ -258,9 +263,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 
         if (cursor.moveToFirst()) {
             do {
-                //monster = new Monster();
+                monster = new Monster();
                 temp_name = cursor.getString(0);
                 if(temp_name.equals(name)){
+                   // monster = cursor.getString(0);
                     isTrue = true;
 
                 }
@@ -270,48 +276,57 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
         return isTrue;
     }
 
-    public void setCreateAccount(String name, String birthday){
-        // 1. get reference to writable DB
-        SQLiteDatabase db = this.getWritableDatabase();
+    public int setCreateAccount(String name, Monster monster){
 
-        // 2. create ContentValues to add key "column"/value
-        ContentValues values = new ContentValues();
-        values.put(KEY_MONSTER_NAME, name); // get name
-        values.put(KEY_BIRTHDAY, birthday); // get name
+        //String birthday, String} eyebrows, String eye, String mouth, String accessory){
 
-        // 3. insert
-        db.insert(TABLE_MONSTER, // table
-                null, //nullColumnHack
-                values); // key/value -> keys = column names/ values = column values
-        // 4. close - release the reference of writable DB
-        db.close();
+        Boolean nameExist = checkMonsterName(name);
+
+        if(nameExist == true) {
+
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(KEY_NAME, monster.getName());
+            values.put(KEY_BIRTHDAY, monster.getBirthday());
+            values.put(KEY_EYEBROWS, monster.getEyebrows());
+            values.put(KEY_EYE, monster.getEye());
+            values.put(KEY_MOUTH, monster.getMouth());
+            values.put(KEY_ACCESSORY, monster.getAccessory());
+
+            // updating row
+            return db.update(TABLE_MONSTER, values, KEY_NAME + " = ?",
+                    new String[]{name});
+        }
+
+        return 0;
+
     }
 
-    public void setCustomizeProfile(String name, String cook, String budget, String transporation){
+    public int setCustomizeProfile(String name, Monster monster){
+        //String cook, String } budget, String transporation){
 
         boolean isAvailable = checkMonsterName(name);
         if(isAvailable == true) {
-            // 1. get reference to writable DB
+
             SQLiteDatabase db = this.getWritableDatabase();
 
             // 2. create ContentValues to add key "column"/value
             ContentValues values = new ContentValues();
-            //values.put(KEY_MONSTER_NAME, name); // get name
-            values.put(KEY_BUDGET, budget); // get name
-            values.put(KEY_ICOOK, cook); // get name
-            values.put(KEY_TRANSPORTATION, transporation); // get name
+            values.put(KEY_BUDGET, monster.getBudget()); // get budget
+            values.put(KEY_ICOOK, monster.getCook()); // get cook
+            values.put(KEY_TRANSPORTATION, monster.getTransportation()); // get transportation
 
-            // 3. insert
-            db.insert(TABLE_MONSTER, // table
-                    null, //nullColumnHack
-                    values); // key/value -> keys = column names/ values = column values
-            // 4. close - release the reference of writable DB
-            db.close();
+            // updating row
+            return db.update(TABLE_MONSTER, values, KEY_NAME + " = ?",
+                    new String[]{name});
+
         }
 
+        return 0;
     }
 
-    public void setFeedMonster(String name, String first, String second, String third){
+    public int setFeedMonster(String name, Monster monster){
         boolean isAvailable = checkMonsterName(name);
         if(isAvailable == true) {
             // 1. get reference to writable DB
@@ -320,17 +335,18 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
             // 2. create ContentValues to add key "column"/value
             ContentValues values = new ContentValues();
             //values.put(KEY_MONSTER_NAME, monster.getName()); // get name
-            values.put(KEY_FIRST_CHOICE, first); // get name
-            values.put(KEY_SECOND_CHOICE, second); // get name
-            values.put(KEY_THIRD_CHOICE, third); // get name
+            values.put(KEY_FIRST_CHOICE, monster.getFirstChoice()); // get name
+            values.put(KEY_SECOND_CHOICE, monster.getSecondChoice()); // get name
+            values.put(KEY_THIRD_CHOICE, monster.getThirdChoice()); // get name
 
-            // 3. insert
-            db.insert(TABLE_MONSTER, // table
-                    null, //nullColumnHack
-                    values); // key/value -> keys = column names/ values = column values
-            // 4. close - release the reference of writable DB
-            db.close();
+            // updating row
+            return db.update(TABLE_MONSTER, values, KEY_NAME + " = ?",
+                    new String[]{name});
+
+
         }
+
+        return 0;
     }
 
     // Get all Choices from the database

@@ -19,6 +19,10 @@ public class Monster {
         private String firstChoice;
         private String secondChoice;
         private String thirdChoice;
+        private String eye;
+        private String eyebrows;
+        private String mouth;
+        private String accessory;
 
         public Monster(){
 
@@ -63,6 +67,30 @@ public class Monster {
             this.thirdChoice = thirdChoice;
         }
 
+        public String getBirthday() {
+            return birthday;
+        }
+
+        public String getEyebrows() {
+            return eyebrows;
+        }
+
+        public String getEye() {
+            return eye;
+        }
+
+        public String getMouth() {
+            return mouth;
+        }
+
+        public String getBudget() {
+            return weeklyBudget;
+        }
+
+        public String getAccessory() {
+            return accessory;
+        }
+
         public String getFirstChoice(){
             return firstChoice;
         }
@@ -79,9 +107,19 @@ public class Monster {
             return monsterName;
         }
 
+        public String getCook() {
+            return doCook;
+        }
+
+        public String getTransportation() {
+            return transportation;
+        }
+
         @Override
         public String toString() {
             return "Monster [monster_name =" + monsterName + "]";
         }
+
+
 
 }
