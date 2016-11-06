@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by brand on 11/5/2016.
@@ -18,11 +19,26 @@ public class CardBack extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.card_back);
+
         Intent i = getIntent();
         latitude = i.getStringExtra("LATITUDE");
         longitude = i.getStringExtra("LONGITUDE");
         name = i.getStringExtra("NAME");
+
+        setContentView(R.layout.card_back);
+        TextView text = new TextView(this);
+        text=(TextView)findViewById(R.id.backText);
+        if(name.isEmpty()){
+            text.setText("Your Reward is at Taco Bell");
+            // Taco Bell | 1830 Fremont Blvd, Seaside, CA 93955 | 36.615726 | -121.842024
+            name = "Taco Bell";
+            latitude = "36.615726";
+            longitude = "-121.842024";
+
+        }
+        else{
+            text.setText("Your Reward is at " + name);
+        }
 
         Button acceptButton = (Button) findViewById(R.id.acceptQuestButton);
         Button quitButton = (Button) findViewById(R.id.noAcceptQuestButton);

@@ -244,6 +244,16 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
                                             Intent myIntent = new Intent(getApplicationContext(), CardBack.class);
                                             //Log.d(TAG, database.randomLatLon().toString());
                                             tempLocation = database.randomLatLon();
+
+                                            while(true) {
+                                                if (tempLocation.getPlace() == null && tempLocation.getPlace().isEmpty()) {
+                                                    tempLocation = database.randomLatLon();
+                                                }
+                                                else{
+                                                    break;
+                                                }
+                                            }
+
                                             Bundle b = new Bundle();
                                             b.putString("NAME", tempLocation.getPlace());
                                             b.putString("LATITUDE", tempLocation.getLatitude());
@@ -315,6 +325,17 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
                                             Intent myIntent = new Intent(getApplicationContext(), CardBack.class);
                                             tempLocation = database.randomLatLon();
 
+                                            Log.d(TAG, "TEMPLOCATION" + tempLocation.getLatitude());
+
+                                            while(true) {
+                                                if (tempLocation.getPlace() == null && tempLocation.getPlace().isEmpty()) {
+                                                    tempLocation = database.randomLatLon();
+                                                }
+                                                else{
+                                                    break;
+                                                }
+                                            }
+
                                             Bundle b = new Bundle();
                                             b.putString("NAME", tempLocation.getPlace());
                                             b.putString("LATITUDE", tempLocation.getLatitude());
@@ -382,6 +403,16 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
                                             set.start();
                                             Intent myIntent = new Intent(getApplicationContext(), CardBack.class);
                                             tempLocation = database.randomLatLon();
+
+                                            while(true) {
+                                                if (tempLocation.getPlace() == null && tempLocation.getPlace().isEmpty()) {
+                                                    tempLocation = database.randomLatLon();
+                                                }
+                                                else{
+                                                    break;
+                                                }
+                                            }
+
                                             Bundle b = new Bundle();
                                             b.putString("NAME", tempLocation.getPlace());
                                             b.putString("LATITUDE", tempLocation.getLatitude());
