@@ -54,7 +54,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FeedMe" />
+        <activity android:name=".FeedMe" >
+            <intent-filter>
+                <action android:name="android.intent.action.FeedMe" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".FeedMeMap" />
         <activity android:name=".CardBack" />
         <activity android:name=".FeedIt">

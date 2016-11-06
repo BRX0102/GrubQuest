@@ -4,6 +4,7 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -119,6 +121,37 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
         expBar();
         //ImageView monsterImage = (ImageView) findViewById(R.id.monsterImage);
         expression();
+        startIdleAnimation((ImageView)findViewById(R.id.monsterImage));
+        monsterDefaultFace(findViewById(R.id.monsterColumn));
+    }
+
+    private void startIdleAnimation(ImageView monster){
+
+        monster.setImageResource(R.drawable.idle_monster);
+
+        AnimationDrawable frameAnimation = (AnimationDrawable)monster.getDrawable();
+
+        frameAnimation.start();
+    }
+
+    private void startWaveAnimation(ImageView monster){
+        monster.setImageResource(R.drawable.wave_monster);
+
+        AnimationDrawable frameAnimation = (AnimationDrawable)monster.getDrawable();
+
+        frameAnimation.start();
+    }
+
+    private void monsterDefaultFace(View v){
+
+        ImageView eyes = new ImageView(this);
+        eyes.setImageResource(R.drawable.crosseye);
+        eyes.setId(View.generateViewId());
+        ((RelativeLayout)v).addView(eyes);
+
+        ImageView mouth = new ImageView(this);
+        mouth.setImageResource(R.drawable.grinsmile);
+        ((RelativeLayout)v).addView(mouth);
 
     }
 
@@ -149,7 +182,7 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
                                   mainHandler.post(new Runnable() {
                                       @Override
                                       public void run() {
-                                          monsterImg.setImageResource(R.mipmap.other);
+                                          //monsterImg.setImageResource(R.mipmap.other);
                                       }
                                   });
 
@@ -182,7 +215,7 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
 
             case R.id.feedMeButton:
                 frame.setVisibility(View.VISIBLE);
-
+                startWaveAnimation((ImageView)findViewById(R.id.monsterImage));
                 break;
 
         }
