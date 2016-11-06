@@ -101,7 +101,7 @@
             android:clickable="true"
             android:textAllCaps="false"
             android:padding="50dp"
-            android:text="Quest it has this infomration that would be Greate to Have yeas I got this workingso Happey"/>
+            android:text="Homemade"/>
 
     <Button
 
@@ -114,7 +114,7 @@
         android:clickable="true"
         android:textAllCaps="false"
         android:padding="50dp"
-        android:text="Quest it has this infomration that would be Greate to Have yeas I got this workingso Happey"
+        android:text="Healthy"
 
     />
         <Button
@@ -129,7 +129,7 @@
             android:clickable="true"
             android:textAllCaps="false"
             android:padding="50dp"
-            android:text="Quest it has this infomration that would be Greate to Have yeas I got this workingso Happey"/>
+            android:text="Cheap"/>
         />
 
 
