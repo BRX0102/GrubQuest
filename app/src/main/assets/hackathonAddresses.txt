@@ -25,6 +25,5 @@ Carmel Farmer's Market | 3652 The Barnyard, Carmel-By-The-Sea, CA 93923 | 36.540
 Food Bank
 -----------------------
 CSUMB Food Pantry | 3116 Inter-Garrison Rd, Seaside, CA 93955 | 36.654274 | -121.797377
-Hope Center Monterey | 241B DELA VINA, MONTEREY, CA 93940 | 36.654274 | -121.797377
 Out Lady of Mt Carmel | 9 El Caminito Rd, Carmel Valley, CA 93924 | 36.480035 | -121.730211
 North County Christian Center Assembly of God | 11299 Poole St, Castroville, CA 95012 | 36.766112 | -121.753575

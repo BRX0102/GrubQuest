@@ -4,6 +4,7 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -39,31 +41,55 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
     private int slide=0;
     private Toast toast;
     private Context thisContext;
-    private Handler mainHandler;
-    private String monsterName;
-    private String firstChoice;
-    private String secondChoice;
-    private String thirdChoice;
-    private String birthday;
-    private String doCook;
-    private String transportation;
-    private String budget;
-    private MySQLiteHelper database;
+    private static boolean hasRun = false;
+    private static Handler mainHandler;
+    private static  String monsterName;
+    private static  String firstChoice;
+    private static  String secondChoice;
+    private static  String thirdChoice;
+    private static  String birthday;
+    private static  String doCook;
+    private static  String transportation;
+    private static  String budget;
+    private static  String color;
+    private static MySQLiteHelper database;
     private Location tempLocation;
     private String TAG = "FEEDME";
+    static Monster newMonster;
+    Context context;
 
     private static boolean check = false;
 
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
+    private final static boolean doThisOnce(Context context){
+        database = new MySQLiteHelper(context);
+        //Get Data Through Bundle
 
-    //new call to global application
-    //MyApplication myApp =    (MyApplication) getApplicationContext();
+        // Create Monster Object
+        newMonster = new Monster();
+        newMonster.setName(monsterName);
+        newMonster.setBirthday(birthday);
+        newMonster.setCooking(doCook);
+        newMonster.setTransportation(transportation);
+        newMonster.setWeeklyBudget(budget);
+        newMonster.setChoices(firstChoice,secondChoice,thirdChoice);
+
+        // Add Monster To Database
+        database.createMonster(newMonster);
+
+        Log.d("FEEDME", "ADDED MONSTER");
+
+        hasRun = true;
+
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feed_me);
+        context = this;
 
         //first setup
         if(!check) {
@@ -89,18 +115,13 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
         firstChoice = i.getStringExtra("FIRST");
         secondChoice = i.getStringExtra("SECOND");
         thirdChoice = i.getStringExtra("THIRD");
+        color = i.getStringExtra("COLOR");
 
-        // Create Monster Object
-        Monster newMonster = new Monster();
-        newMonster.setName(monsterName);
-        newMonster.setBirthday(birthday);
-        newMonster.setCooking(doCook);
-        newMonster.setTransportation(transportation);
-        newMonster.setWeeklyBudget(budget);
-        newMonster.setChoices(firstChoice,secondChoice,thirdChoice);
+        if(hasRun == false) {
+            doThisOnce(context);
+        }
 
-        // Add Monster To Database
-        database.createMonster(newMonster);
+        Log.d(TAG, database.getMonsterName().toString());
 
 
          image1 =(Button) findViewById(R.id.image1);
@@ -116,6 +137,37 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
         expBar();
         //ImageView monsterImage = (ImageView) findViewById(R.id.monsterImage);
         expression();
+        startIdleAnimation((ImageView)findViewById(R.id.monsterImage));
+        monsterDefaultFace(findViewById(R.id.monsterColumn));
+    }
+
+    private void startIdleAnimation(ImageView monster){
+
+        monster.setImageResource(R.drawable.idle_monster);
+
+        AnimationDrawable frameAnimation = (AnimationDrawable)monster.getDrawable();
+
+        frameAnimation.start();
+    }
+
+    private void startWaveAnimation(ImageView monster){
+        monster.setImageResource(R.drawable.wave_monster);
+
+        AnimationDrawable frameAnimation = (AnimationDrawable)monster.getDrawable();
+
+        frameAnimation.start();
+    }
+
+    private void monsterDefaultFace(View v){
+
+        ImageView eyes = new ImageView(this);
+        eyes.setImageResource(R.drawable.crosseye);
+        eyes.setId(View.generateViewId());
+        ((RelativeLayout)v).addView(eyes);
+
+        ImageView mouth = new ImageView(this);
+        mouth.setImageResource(R.drawable.grinsmile);
+        ((RelativeLayout)v).addView(mouth);
 
     }
 
@@ -168,7 +220,7 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
                                   mainHandler.post(new Runnable() {
                                       @Override
                                       public void run() {
-                                          monsterImg.setImageResource(R.mipmap.other);
+                                          //monsterImg.setImageResource(R.mipmap.other);
                                       }
                                   });
 
@@ -201,7 +253,7 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
 
             case R.id.feedMeButton:
                 frame.setVisibility(View.VISIBLE);
-
+                startWaveAnimation((ImageView)findViewById(R.id.monsterImage));
                 break;
 
         }
