@@ -4,7 +4,9 @@ package edu.csumb.hashmapsallday.hungrylittlemonsters;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
@@ -60,6 +62,7 @@ public class FeedMonster extends AppCompatActivity {
     private class DragListener implements View.OnDragListener {
 
         public boolean onDrag(View v, DragEvent event) {
+
 
             int action = event.getAction();
             switch (action) {
@@ -117,16 +120,18 @@ public class FeedMonster extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void startIdleAnimation(ImageView monster){
 
 
-        monster.setBackgroundResource(R.drawable.idle_monster);
+        monster.setImageResource(R.drawable.idle_monster);
 
-        AnimationDrawable frameAnimation = (AnimationDrawable)monster.getBackground();
+        AnimationDrawable frameAnimation = (AnimationDrawable)monster.getDrawable();
 
         frameAnimation.start();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void animateEatingObject(ImageView monster){
 
 
