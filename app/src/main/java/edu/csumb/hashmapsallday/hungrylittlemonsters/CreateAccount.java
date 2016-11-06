@@ -2,9 +2,11 @@ package edu.csumb.hashmapsallday.hungrylittlemonsters;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
@@ -72,5 +74,11 @@ public class CreateAccount extends Activity {
                 break;
         }
         return false;
+    }
+
+    public void submitMonsterData(){
+        // Savethis to monster.name=((EditText)findViewById(R.id.monsterName)).getText().toString();
+        int monsterID = viewFlipper.getDisplayedChild();
+        ColorFilter color = ((ImageView)findViewById(monsterID)).getColorFilter();
     }
 }
