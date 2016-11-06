@@ -467,8 +467,8 @@ public class FeedMap extends FragmentActivity implements OnMapReadyCallback, Con
 
         Marker currentMarker = mMap.addMarker(new MarkerOptions()
                 .position(destCoords)
-                .title("Jack in the Box")
-                .snippet("Come and feed your monster :D")
+                .title(businessName)
+                .snippet("Feed Monster Here :)")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_media_play)));
         //.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
