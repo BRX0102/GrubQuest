@@ -33,11 +33,7 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
     private Monster monster;
     private Context context;
     private String birthday;
-//    MySQLiteHelper database = new MySQLiteHelper(this);
-
-    //SQLiteOpenHelper helper = new SQLiteOpenHelper(context, "StarvingStudents", null, 9);
-    //SQLiteDatabase database = helper.getWritableDatabase();
-
+    private String color;
 
     String TAG = "Customize";
     @Override
@@ -48,6 +44,7 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
         Intent i = getIntent();
         monsterName = i.getStringExtra("AVATARNAME");
         birthday = i.getStringExtra("BIRTHDAY");
+        color = i.getStringExtra("COLOR");
 
         addListenerOnSpinner();
 
@@ -106,14 +103,15 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
             Bundle b = new Bundle();
 
             b.putString("AVATARNAME", monsterName);
+            b.putString("COLOR", color);
             b.putString("BIRTHDAY", birthday);
             b.putString("COOKING", doCookString);
             b.putString("TRANS", transportation);
             b.putString("BUDGET", weeklyBudget.getText().toString());
 
             i.putExtras(b);
-            this.finish();
             startActivity(i);
+            this.finish();
         }
     }
 }
