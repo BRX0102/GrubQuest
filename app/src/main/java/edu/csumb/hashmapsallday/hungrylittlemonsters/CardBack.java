@@ -78,8 +78,7 @@ public class CardBack extends AppCompatActivity {
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(getApplicationContext(), FeedMe.class);
-                startActivity(myIntent);
+                finish();
 
 
             }
