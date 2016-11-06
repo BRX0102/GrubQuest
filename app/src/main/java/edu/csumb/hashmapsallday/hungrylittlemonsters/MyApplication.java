@@ -12,6 +12,8 @@ import java.util.HashMap;
 
 public class MyApplication extends Application {
     final String TAG = "StarvingStudents";
+    private int gExpPoints = 0;
+
     private static HashMap<String, String> addresses = new HashMap<String, String>();
 
     public MyApplication(){
@@ -25,5 +27,13 @@ public class MyApplication extends Application {
 
     public void setAddress(String key, String value){
         addresses.put(key, value);
+    }
+
+    public int getExpPoints(){
+        return this.gExpPoints;
+    }
+
+    public void setExpPoints(int points){
+        this.gExpPoints = points;
     }
 }

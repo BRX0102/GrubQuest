@@ -110,8 +110,8 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
             b.putString("BUDGET", weeklyBudget.getText().toString());
 
             i.putExtras(b);
-            this.finish();
             startActivity(i);
+            this.finish();
         }
     }
 }

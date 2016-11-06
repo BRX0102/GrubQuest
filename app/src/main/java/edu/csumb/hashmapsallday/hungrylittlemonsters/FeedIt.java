@@ -26,7 +26,7 @@ import java.util.Random;
 import static android.R.attr.id;
 
 
-public class FeedMonster extends AppCompatActivity {
+public class FeedIt extends AppCompatActivity {
 
     public static final int LIGHT_BLUE = Color.rgb(176, 200, 255);
     public static final int LIGHT_GREEN = Color.rgb(200, 255, 200);
@@ -45,7 +45,6 @@ public class FeedMonster extends AppCompatActivity {
     private String thirdChoice;
     private String birthday;
     private String doCook;
-    private String color;
     private String transportation;
     private String budget;
     //MySQLiteHelper database;
@@ -56,10 +55,8 @@ public class FeedMonster extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //database = new MySQLiteHelper(this);
-        setContentView(R.layout.activity_feedmonster);
+        setContentView(R.layout.activity_feedit);
         column1 = (View)findViewById(R.id.item1Column);
-        column2 = (View)findViewById(R.id.item2Column);
-        column3 = (View)findViewById(R.id.item3Column);
         monster = ((ImageView)findViewById(R.id.monster));
 
         Intent i = getIntent();
@@ -68,7 +65,6 @@ public class FeedMonster extends AppCompatActivity {
         doCook = i.getStringExtra("COOKING");
         transportation = i.getStringExtra("TRANS");
         budget = i.getStringExtra("BUDGET");
-        color = i.getStringExtra("COLOR");
 
 
         startIdleAnimation(monster);
@@ -111,19 +107,12 @@ public class FeedMonster extends AppCompatActivity {
                     // Dropped foodTile on monster
                     FoodDragItem temp = (FoodDragItem)event.getLocalState();
 
-                    if(counter == 1){
-                        firstChoice = Integer.toString(temp.getId());
-                    }
-                    else if(counter == 2){
-                        secondChoice = Integer.toString(temp.getId());
-                    }
-                    else if(counter == 3){
-                        thirdChoice = Integer.toString(temp.getId());
-                        submitMonsterPreferences();
-                    }
-                    monsterSetFace(findViewById(R.id.monsterColumn));
-                    //addStatModifier(FoodDragItem);
                     temp.setVisibility(View.INVISIBLE);
+
+                    submitMonsterPreferences();
+
+                    //addStatModifier(FoodDragItem);
+
                     return true;
             }
             return false;
@@ -196,6 +185,14 @@ public class FeedMonster extends AppCompatActivity {
 
 
 
+//        if (selector ==0) {
+//            monsterSetFaceHelper(v, R.drawable.horntail, 3);
+//        } else if (selector ==1) {
+//            monsterSetFaceHelper(v, R.drawable.horns, 3);
+//        } else if (selector ==2) {
+//            monsterSetFaceHelper(v, R.drawable.batwing, 3);
+//        }
+
 
     }
 
@@ -223,9 +220,7 @@ public class FeedMonster extends AppCompatActivity {
 
         startIdleAnimation(monster);
 
-        setItemView(column1, new FoodDragItem(this), R.drawable.broccoli);
-        setItemView(column2, new FoodDragItem(this), R.drawable.coins);
-        setItemView(column3, new FoodDragItem(this), R.drawable.utensils);
+        setItemView(column1, new FoodDragItem(this), R.drawable.burger);
         monster.setOnDragListener(new DragListener());
         monsterDefaultFace(findViewById(R.id.monsterColumn));
         counter = 0;
@@ -246,7 +241,6 @@ public class FeedMonster extends AppCompatActivity {
         b.putString("FIRST", firstChoice);
         b.putString("SECOND", secondChoice);
         b.putString("THIRD", thirdChoice);
-        b.putString("COLOR", color);
 
         i.putExtras(b);
 
