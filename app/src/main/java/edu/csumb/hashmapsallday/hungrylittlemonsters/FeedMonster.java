@@ -26,9 +26,10 @@ import com.github.amlcurran.showcaseview.targets.Target;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 import static android.R.attr.id;
+import static android.R.attr.onClick;
 
 
-public class FeedMonster extends AppCompatActivity {
+public class FeedMonster extends AppCompatActivity implements View.OnClickListener {
 
     public static final int LIGHT_BLUE = Color.rgb(176, 200, 255);
     public static final int LIGHT_GREEN = Color.rgb(200, 255, 200);
@@ -47,8 +48,8 @@ public class FeedMonster extends AppCompatActivity {
     private String transportation;
     private String budget;
     MySQLiteHelper database;
-
-
+    private LinearLayout main;
+    private int clickCount=0;
 
 
     @Override
@@ -60,19 +61,10 @@ public class FeedMonster extends AppCompatActivity {
         column2 = (View)findViewById(R.id.item2Column);
         column3 = (View)findViewById(R.id.item3Column);
         monster = ((ImageView)findViewById(R.id.monster));
-
+        clickNum();
 //        Create showcaseView on monster
-        try {
-            Target viewTarget = new ViewTarget(findViewById(R.id.monster));
-            new ShowcaseView.Builder(this)
-                    .setTarget(viewTarget)
-                    .setContentTitle("ShowcaseView")
-                    .setContentText("This is highlighting the Home button")
-                    .hideOnTouchOutside()
-                    .build();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+
 
 
         Intent i = getIntent();
@@ -95,7 +87,83 @@ public class FeedMonster extends AppCompatActivity {
 
 
     }
+    private void clickNum()
+    {
+        main=(LinearLayout)findViewById(R.id.mainFeedMonster);
 
+        main.setOnClickListener(this);
+
+
+
+    }
+    public void onClick(View view)
+    {
+        switch(view.getId())
+        {
+            case R.id.mainFeedMonster:
+                clickCount++;
+                switch (clickCount)
+                {
+                    case 1:
+                        try {
+                            Target viewTarget = new ViewTarget(findViewById(R.id.monster));
+                            new ShowcaseView.Builder(this)
+                                    .setTarget(viewTarget)
+                                    .setContentTitle("ShowcaseView")
+                                    .setContentText("This is highlighting the Home button")
+                                    .hideOnTouchOutside()
+                                    .build();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 2:
+                        try {
+                            Target viewTarget = new ViewTarget(findViewById(R.id.item1Column));
+                            new ShowcaseView.Builder(this)
+                                    .setTarget(viewTarget)
+                                    .setContentTitle("ShowcaseView")
+                                    .setContentText("This is highlighting the Home button")
+                                    .hideOnTouchOutside()
+                                    .build();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 3:
+                        try {
+                            Target viewTarget = new ViewTarget(findViewById(R.id.item2Column));
+                            new ShowcaseView.Builder(this)
+                                    .setTarget(viewTarget)
+                                    .setContentTitle("ShowcaseView")
+                                    .setContentText("This is highlighting the Home button")
+                                    .hideOnTouchOutside()
+                                    .build();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 4:
+                        try {
+                            Target viewTarget = new ViewTarget(findViewById(R.id.item3Column));
+                            new ShowcaseView.Builder(this)
+                                    .setTarget(viewTarget)
+                                    .setContentTitle("ShowcaseView")
+                                    .setContentText("This is highlighting the Home button")
+                                    .hideOnTouchOutside()
+                                    .build();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                }
+                break;
+        }
+    }
     private class DragListener implements View.OnDragListener {
 
         public boolean onDrag(View v, DragEvent event) {
