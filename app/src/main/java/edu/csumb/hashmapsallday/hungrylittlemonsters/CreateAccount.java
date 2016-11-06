@@ -15,12 +15,12 @@ import android.widget.ViewFlipper;
 public class CreateAccount extends Activity implements View.OnClickListener {
     private ViewFlipper viewFlipper;
     private float lastX;
-
     Monster newMonster;
     ImageView monster1;
     ImageView monster2;
     ImageView monster3;
     private String avatarName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
