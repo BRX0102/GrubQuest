@@ -1,22 +1,26 @@
 package edu.csumb.hashmapsallday.hungrylittlemonsters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
-public class CreateAccount extends Activity {
+public class CreateAccount extends Activity implements View.OnClickListener {
     private ViewFlipper viewFlipper;
     private float lastX;
+
     Monster newMonster;
     ImageView monster1;
     ImageView monster2;
     ImageView monster3;
+    private String avatarName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,18 @@ public class CreateAccount extends Activity {
                 break;
         }
         return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.submitAvatar){
+            avatarName = ((EditText)findViewById(R.id.monsterName)).getText().toString();
+            //Karen please add this name to your database.
+
+            Intent customizeProfile = new Intent(this, CustomizeProfile.class);
+            startActivity(customizeProfile);
+            this.finish();
+        }
     }
 
     public void submitMonsterData(){
