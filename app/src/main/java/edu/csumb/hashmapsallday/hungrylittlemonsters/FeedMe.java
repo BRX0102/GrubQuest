@@ -39,42 +39,32 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
     private int slide=0;
     private Toast toast;
     private Context thisContext;
-    private Handler mainHandler;
-    private String monsterName;
-    private String firstChoice;
-    private String secondChoice;
-    private String thirdChoice;
-    private String birthday;
-    private String doCook;
-    private String transportation;
-    private String budget;
-    private MySQLiteHelper database;
+    private static boolean hasRun = false;
+    private static Handler mainHandler;
+    private static  String monsterName;
+    private static  String firstChoice;
+    private static  String secondChoice;
+    private static  String thirdChoice;
+    private static  String birthday;
+    private static  String doCook;
+    private static  String transportation;
+    private static  String budget;
+    private static  String color;
+    private static MySQLiteHelper database;
     private Location tempLocation;
     private String TAG = "FEEDME";
+    static Monster newMonster;
+    Context context;
 
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.feed_me);
-
+    private final static boolean doThisOnce(Context context){
+        database = new MySQLiteHelper(context);
         //Get Data Through Bundle
-        database = new MySQLiteHelper(this);
-        Intent i = getIntent();
-        monsterName = i.getStringExtra("AVATARNAME");
-        birthday = i.getStringExtra("BIRTHDAY");
-        doCook = i.getStringExtra("COOKING");
-        transportation = i.getStringExtra("TRANS");
-        budget = i.getStringExtra("BUDGET");
-        firstChoice = i.getStringExtra("FIRST");
-        secondChoice = i.getStringExtra("SECOND");
-        thirdChoice = i.getStringExtra("THIRD");
 
-        Log.d(TAG, "dsd");
         // Create Monster Object
-        Monster newMonster = new Monster();
+        newMonster = new Monster();
         newMonster.setName(monsterName);
         newMonster.setBirthday(birthday);
         newMonster.setCooking(doCook);
@@ -84,6 +74,36 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
 
         // Add Monster To Database
         database.createMonster(newMonster);
+
+        Log.d("FEEDME", "ADDED MONSTER");
+
+        hasRun = true;
+
+        return true;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.feed_me);
+        context = this;
+
+        Intent i = getIntent();
+        monsterName = i.getStringExtra("AVATARNAME");
+        birthday = i.getStringExtra("BIRTHDAY");
+        doCook = i.getStringExtra("COOKING");
+        transportation = i.getStringExtra("TRANS");
+        budget = i.getStringExtra("BUDGET");
+        firstChoice = i.getStringExtra("FIRST");
+        secondChoice = i.getStringExtra("SECOND");
+        thirdChoice = i.getStringExtra("THIRD");
+        color = i.getStringExtra("COLOR");
+
+        if(hasRun == false) {
+            doThisOnce(context);
+        }
+
+        Log.d(TAG, database.getMonsterName().toString());
 
 
          image1 =(Button) findViewById(R.id.image1);

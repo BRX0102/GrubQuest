@@ -39,9 +39,9 @@ public class CreateAccount extends Activity {
         setContentView(R.layout.activity_createaccount);
         viewFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
 
-        monster1 = (ImageView)findViewById(R.id.monster);
-        monster2 = (ImageView)findViewById(R.id.monster2);
-        monster3 = (ImageView)findViewById(R.id.monster3);
+        monster1 = (ImageView)findViewById(R.id.monsterImage);
+        monster2 = (ImageView)findViewById(R.id.monster2Image);
+        monster3 = (ImageView)findViewById(R.id.monster3Image);
         monster2.setColorFilter(Color.parseColor("#00FF00"), PorterDuff.Mode.MULTIPLY);
         monster3.setColorFilter(Color.parseColor("#FFFF00"), PorterDuff.Mode.MULTIPLY);
 
@@ -109,10 +109,7 @@ public class CreateAccount extends Activity {
     public void submitMonsterData(View v){
         avatarName = ((EditText)findViewById(R.id.monsterName)).getText().toString();
 
-
         int monsterID = viewFlipper.getChildAt(viewFlipper.getDisplayedChild()).getId();
-        //String mon = viewFlipper.
-
 
         if(monsterID == R.id.monster2){
             color = "#00FF00";
@@ -142,7 +139,7 @@ public class CreateAccount extends Activity {
 
         b.putString("AVATARNAME", avatarName);
         b.putString("BIRTHDAY", birthday);
-        b.putString("COLOR", Integer.toString(monsterID));
+        b.putString("COLOR", color);
 
         customizeProfile.putExtras(b);
 
