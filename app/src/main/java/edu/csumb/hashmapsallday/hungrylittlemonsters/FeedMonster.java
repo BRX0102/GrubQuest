@@ -42,14 +42,14 @@ public class FeedMonster extends AppCompatActivity {
     private String doCook;
     private String transportation;
     private String budget;
-    MySQLiteHelper database;
+    //MySQLiteHelper database;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        database = new MySQLiteHelper(this);
+        //database = new MySQLiteHelper(this);
         setContentView(R.layout.activity_feedmonster);
         column1 = (View)findViewById(R.id.item1Column);
         column2 = (View)findViewById(R.id.item2Column);
@@ -179,19 +179,23 @@ public class FeedMonster extends AppCompatActivity {
     }
 
     private void submitMonsterPreferences(){
-        Monster newMonster = new Monster();
 
-        newMonster.setName(monsterName);
-        newMonster.setBirthday(birthday);
-        newMonster.setCooking(doCook);
-        newMonster.setTransportation(transportation);
-        newMonster.setWeeklyBudget(budget);
-        newMonster.setChoices(firstChoice,secondChoice,thirdChoice);
-        //newMonster.setMonsterAttributes();
-
-        database.createMonster(newMonster);
 
         Intent i = new Intent(this, FeedMe.class);
+
+        Bundle b = new Bundle();
+
+        b.putString("AVATARNAME", monsterName);
+        b.putString("BIRTHDAY", birthday);
+        b.putString("COOKING", doCook);
+        b.putString("TRANS", transportation);
+        b.putString("BUDGET", budget);
+        b.putString("FIRST", firstChoice);
+        b.putString("SECOND", secondChoice);
+        b.putString("THIRD", thirdChoice);
+
+        i.putExtras(b);
+
         this.finish();
         startActivity(i);
 
