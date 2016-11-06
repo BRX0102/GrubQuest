@@ -20,6 +20,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.github.amlcurran.showcaseview.*;
+import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 import static android.R.attr.id;
 
@@ -46,6 +50,7 @@ public class FeedMonster extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +60,20 @@ public class FeedMonster extends AppCompatActivity {
         column2 = (View)findViewById(R.id.item2Column);
         column3 = (View)findViewById(R.id.item3Column);
         monster = ((ImageView)findViewById(R.id.monster));
+
+//        Create showcaseView on monster
+        try {
+            Target viewTarget = new ViewTarget(findViewById(R.id.monster));
+            new ShowcaseView.Builder(this)
+                    .setTarget(viewTarget)
+                    .setContentTitle("ShowcaseView")
+                    .setContentText("This is highlighting the Home button")
+                    .hideOnTouchOutside()
+                    .build();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         Intent i = getIntent();
         monsterName = i.getStringExtra("AVATARNAME");
