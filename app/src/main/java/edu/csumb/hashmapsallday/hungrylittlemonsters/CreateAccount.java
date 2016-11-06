@@ -1,8 +1,13 @@
 package edu.csumb.hashmapsallday.hungrylittlemonsters;
 
 import android.app.Activity;
+<<<<<<< HEAD
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+||||||| merged common ancestors
+=======
+import android.graphics.Color;
+>>>>>>> 4fc66bba232ee9562edf3611be95efdbcbb803e7
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.ImageView;
@@ -11,21 +16,35 @@ import android.widget.ViewFlipper;
 public class CreateAccount extends Activity {
     private ViewFlipper viewFlipper;
     private float lastX;
+<<<<<<< HEAD
     ImageView monster1;
     ImageView monster2;
     ImageView monster3;
+||||||| merged common ancestors
+=======
+    ImageView monster1 = (ImageView)findViewById(R.id.monster);
+    ImageView monster2 = (ImageView)findViewById(R.id.monster2);
+    ImageView monster3 = (ImageView)findViewById(R.id.monster3);
+>>>>>>> 4fc66bba232ee9562edf3611be95efdbcbb803e7
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createaccount);
         viewFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
+<<<<<<< HEAD
 
         monster1 = (ImageView)findViewById(R.id.monster);
         monster2 = (ImageView)findViewById(R.id.monster2);
         monster3 = (ImageView)findViewById(R.id.monster3);
         monster2.setColorFilter(Color.parseColor("#00FF00"), PorterDuff.Mode.MULTIPLY);
         monster3.setColorFilter(Color.parseColor("#FFFF00"), PorterDuff.Mode.MULTIPLY);
+||||||| merged common ancestors
+=======
+
+        monster2.setColorFilter(Color.parseColor("#0000FF"));
+        monster3.setColorFilter(Color.parseColor("#FFFF00"));
+>>>>>>> 4fc66bba232ee9562edf3611be95efdbcbb803e7
     }
 
     // Using the following method, we will handle all screen swaps.
