@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">HungryLittleMonsters</string>
+    <string name="monster">Monster 1</string>
+    <string name="monster2">Monster 2</string>
+    <string name="monster3">Monster 3</string>
+
+    <string-array name="transporationArray">
+        <item>Walking</item>
+        <item>Biking</item>
+        <item>Driving</item>
+        <item>Public Transit</item>
+    </string-array>
+
+    <string name="facebook_app_id">1603512753287735</string>
+    <string name="title_activity_feed_map">Map</string>
+
 </resources>

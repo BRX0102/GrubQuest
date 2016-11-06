@@ -1,0 +1,30 @@
+Fast Food
+-----------------------
+Burger King | 200 Reservation Rd, Marina, CA 93933 | 36.687361 | -121.799678
+Jack in the Box | 211 Reservation Rd, Marina, CA 93933 | 36.687945 | -121.798975
+Taco Bell | 1830 Fremont Blvd, Seaside, CA 93955 | 36.615726 | -121.842024
+In-N-Out | 151 Kern St, Salinas, CA 93905 | 36.679985 | -121.640690
+McDonalds | 267 Reservation Rd, Marina, CA 93933 | 36.685502 | -121.794579
+
+Prepared Foods
+-----------------------
+Target | 133 General Stilwell Dr, Marina, CA 93933 | 36.667688 | -121.810748
+Costco | 801 Tioga Ave, Sand City, CA 93955 | 36.617214 | -121.845363
+Walmart | 150 Beach Rd, Marina, CA 93933 | 36.693108 | -121.800855
+Lucky | 2000 California Ave, Sand City, CA 93955 | 36.619869 | -121.843451
+Safeway | 815 Canyon Del Rey Blvd, Del Rey Oaks, CA 93940 | 36.597629 | -121.850033
+Smart & Final | 1560 Canyon Del Rey Blvd, Seaside, CA 93955 | 36.608957 | -121.855121
+
+Farmer's Market
+-----------------------
+Monterey Farmer's Market | 300 Alvarado St, Monterey, CA 93940 | 36.600912 | -121.893878
+Marina Farmer's Market | 215 Reservation Rd, Marina, CA 93933 | 36.687904 | -121.797928
+Pacific Grove Farmer's Market | Central Ave. and Grand Ave. Pacific Grove, CA 93950 | 36.622076 | -121.916706
+Carmel Farmer's Market | 3652 The Barnyard, Carmel-By-The-Sea, CA 93923 | 36.540301 | -121.906951
+
+Food Bank
+-----------------------
+CSUMB Food Pantry | 3116 Inter-Garrison Rd, Seaside, CA 93955 | 36.654274 | -121.797377
+Hope Center Monterey | 241B DELA VINA, MONTEREY, CA 93940 | 36.654274 | -121.797377
+Out Lady of Mt Carmel | 9 El Caminito Rd, Carmel Valley, CA 93924 | 36.480035 | -121.730211
+North County Christian Center Assembly of God | 11299 Poole St, Castroville, CA 95012 | 36.766112 | -121.753575
