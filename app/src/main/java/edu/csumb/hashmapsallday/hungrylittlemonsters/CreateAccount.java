@@ -15,20 +15,10 @@ import android.widget.ViewFlipper;
 public class CreateAccount extends Activity implements View.OnClickListener {
     private ViewFlipper viewFlipper;
     private float lastX;
-<<<<<<< HEAD
+
     ImageView monster1;
     ImageView monster2;
     ImageView monster3;
-||||||| merged common ancestors
-    ImageView monster1 = (ImageView)findViewById(R.id.monster);
-    ImageView monster2 = (ImageView)findViewById(R.id.monster2);
-    ImageView monster3 = (ImageView)findViewById(R.id.monster3);
-=======
-    private String avatarName;
-    ImageView monster1 = (ImageView)findViewById(R.id.monster);
-    ImageView monster2 = (ImageView)findViewById(R.id.monster2);
-    ImageView monster3 = (ImageView)findViewById(R.id.monster3);
->>>>>>> 1802be44f5be2d6acd0a370f4f9ab0424c035e0e
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
