@@ -425,4 +425,27 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
     }
 
 
+    public void createMonster(Monster monster) {
+        Log.d(TAG, "CreateMonster() - " + monster.toString());
+        // 1. get reference to writable DB
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // 2. create ContentValues to add key "column"/value
+        ContentValues values = new ContentValues();
+        values.put(KEY_MONSTER_NAME, monster.getName()); // get name
+        values.put(KEY_BUDGET, monster.getBudget());
+        values.put(KEY_FIRST_CHOICE, monster.getFirstChoice());
+        values.put(KEY_SECOND_CHOICE, monster.getSecondChoice());
+        values.put(KEY_THIRD_CHOICE, monster.getThirdChoice());
+        values.put(KEY_TRANSPORTATION, monster.getTransportation());
+        values.put(KEY_ICOOK, monster.getCook());
+
+        // 3. insert
+        db.insert(TABLE_MONSTER, // table
+                null, //nullColumnHack
+                values); // key/value -> keys = column names/ values = column values
+
+        // 4. close - release the reference of writable DB
+        db.close();
+    }
 }

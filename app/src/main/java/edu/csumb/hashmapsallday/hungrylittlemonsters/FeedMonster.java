@@ -181,8 +181,15 @@ public class FeedMonster extends AppCompatActivity {
     private void submitMonsterPreferences(){
         Monster newMonster = new Monster();
 
+        newMonster.setName(monsterName);
+        newMonster.setBirthday(birthday);
+        newMonster.setCooking(doCook);
+        newMonster.setTransportation(transportation);
+        newMonster.setWeeklyBudget(budget);
         newMonster.setChoices(firstChoice,secondChoice,thirdChoice);
         //newMonster.setMonsterAttributes();
+
+        database.createMonster(newMonster);
 
         Intent i = new Intent(this, FeedMe.class);
         this.finish();
