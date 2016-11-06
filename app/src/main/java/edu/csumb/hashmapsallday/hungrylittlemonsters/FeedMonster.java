@@ -2,6 +2,7 @@ package edu.csumb.hashmapsallday.hungrylittlemonsters;
 
 
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -32,15 +33,22 @@ public class FeedMonster extends AppCompatActivity {
         column2 = (View)findViewById(R.id.item2Column);
         column3 = (View)findViewById(R.id.item3Column);
         monster = ((ImageView)findViewById(R.id.monster));
+        monster.setBackgroundResource(R.drawable.idle_monster);
+
+        AnimationDrawable frameAnimation = (AnimationDrawable)monster.getBackground();
+
+        frameAnimation.start();
 //        column1.setOnDragListener(new DragListener());
 //        ((ViewGroup)column1).removeAllViews();
 //        FoodDragItem temp = new FoodDragItem(this);
 //        temp.setImageResource(R.drawable.broccoli);
 //        ((ViewGroup)column1).addView(temp);
         setItemView(column1, new FoodDragItem(this), R.drawable.broccoli);
-        setItemView(column2, new FoodDragItem(this), R.drawable.broccoli);
-        setItemView(column3, new FoodDragItem(this), R.drawable.broccoli);
+        setItemView(column2, new FoodDragItem(this), R.drawable.coins);
+        setItemView(column3, new FoodDragItem(this), R.drawable.utensils);
         monster.setOnDragListener(new DragListener());
+
+
 
     }
 
