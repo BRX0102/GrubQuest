@@ -82,7 +82,7 @@ public class CreateAccount extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.submitAvatar){
-            avatarName = ((EditText)findViewById(R.id.avatarName)).getText().toString();
+            avatarName = ((EditText)findViewById(R.id.monsterName)).getText().toString();
             //Karen please add this name to your database.
 
             Intent customizeProfile = new Intent(this, CustomizeProfile.class);
