@@ -48,6 +48,7 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
     private Handler mainHandler;
     private int clickCount=0;
     private RelativeLayout main;
+    private ShowcaseView showcase;
 
 
     private static final String DEBUG_TAG = "Gestures";
@@ -81,6 +82,19 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
     {
         main= (RelativeLayout) findViewById(R.id.feedMeMain);
         main.setOnClickListener(this);
+
+        try {
+            Target viewTarget = new ViewTarget(findViewById(R.id.feedMeButton));
+              showcase =new ShowcaseView.Builder(this)
+                    .setTarget(viewTarget)
+                    .setContentTitle("Questing")
+                    .setStyle(R.style.CustomShowcaseTheme2)
+                    .setContentText("Click this button to view random quest.")
+                    .setOnClickListener(this)
+                    .build();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public void expBar()
     {
@@ -136,88 +150,63 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onClick(View view) {
+        clickCount++;
+        switch (clickCount)
+        {
 
-        toast= Toast.makeText(this,Integer.toString(clickCount),Toast.LENGTH_SHORT);
-        toast.show();
+
+
+            case 2:
+                try {
+                    showcase.hide();
+                    Target viewTarget = new ViewTarget(findViewById(R.id.monsterImage));
+                    showcase =new ShowcaseView.Builder(this)
+                            .setTarget(viewTarget)
+                            .setContentTitle("Questing")
+                            .setStyle(R.style.CustomShowcaseTheme2)
+                            .setContentText("This shows your monster's current level. Gain experience from completing quest.")
+                            .setOnClickListener(this)
+                            .build();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 3:
+                try {
+                    showcase.hide();
+                    frame.setVisibility(View.VISIBLE);
+                    Target viewTarget = new ViewTarget(findViewById(R.id.container));
+                    showcase = new ShowcaseView.Builder(this)
+                            .setTarget(viewTarget)
+                            .setContentTitle("Feed The Monster")
+                            .setStyle(R.style.CustomShowcaseTheme2)
+                            .setContentText("Swipe on quest to get information about diffculty and experience of the chosen quest.")
+                            .setOnClickListener(this)
+                            .build();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 4:
+                showcase.hide();
+            case 5:
+
+                break;
+            case 6:
+                break;
+        }
+
         switch(view.getId()) {
+
 
             case R.id.feedMeButton:
                 frame.setVisibility(View.VISIBLE);
 
                 break;
             case R.id.feedMeMain:
-                clickCount++;
-
-                switch (clickCount)
-                {
-                    case 1:
-                        try {
-                            Target viewTarget = new ViewTarget(findViewById(R.id.feedMeButton));
-                            new ShowcaseView.Builder(this)
-                                    .setTarget(viewTarget)
-                                    .setContentTitle("Questing")
-                                    .setStyle(R.style.CustomShowcaseTheme2)
-                                    .setContentText("Click this button to view random quest.")
-                                    .hideOnTouchOutside()
-                                    .build();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                        break;
-                    case 2:
-                        try {
-                            Target viewTarget = new ViewTarget(findViewById(R.id.monsterImage));
-                            new ShowcaseView.Builder(this)
-                                    .setTarget(viewTarget)
-                                    .setContentTitle("Questing")
-                                    .setStyle(R.style.CustomShowcaseTheme2)
-                                    .setContentText("This shows your monster's current level. Gain experience from completing quest.")
-                                    .hideOnTouchOutside()
-                                    .build();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        break;
-                    case 3:
-                        try {
 
 
-                            frame.setVisibility(View.VISIBLE);
-                            Target viewTarget = new ViewTarget(findViewById(R.id.container));
-                            new ShowcaseView.Builder(this)
-                                    .setTarget(viewTarget)
-                                    .setContentTitle("Feed The Monster")
-                                    .setStyle(R.style.CustomShowcaseTheme2)
-                                    .setContentText("Swipe on quest to get information about diffculty and experience of the chosen quest.")
-                                    .hideOnTouchOutside()
-                                    .build();
-                            //frame.setVisibility(View.GONE);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        break;
-                    case 4:
-                        try {
-
-                            frame.setVisibility(View.GONE);
-                            Target viewTarget = new ViewTarget(findViewById(R.id.container));
-                            new ShowcaseView.Builder(this)
-                                    .setTarget(viewTarget)
-                                    .setContentTitle("Feed The Monster")
-                                    .setStyle(R.style.CustomShowcaseTheme2)
-                                    .setContentText("Click outside the circle to get started.")
-                                    .hideOnTouchOutside()
-                                    .build();
-                            //frame.setVisibility(View.GONE);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    case 5:
-                        break;
-                    case 6:
-                        break;
-                }
                 break;
 
         }

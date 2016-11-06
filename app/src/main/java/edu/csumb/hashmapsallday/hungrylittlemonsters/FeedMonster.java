@@ -54,7 +54,7 @@ public class FeedMonster extends AppCompatActivity implements View.OnClickListen
     MySQLiteHelper database;
     private LinearLayout main;
     private int clickCount=1;
-
+    private ShowcaseView showcase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,80 +96,79 @@ public class FeedMonster extends AppCompatActivity implements View.OnClickListen
         main=(LinearLayout)findViewById(R.id.mainFeedMonster);
 
         main.setOnClickListener(this);
-
+        Target viewTarget = new ViewTarget(findViewById(R.id.monster));
+       showcase = new ShowcaseView.Builder(this)
+                .setTarget(viewTarget)
+                .setContentTitle("Feed The Monster")
+                .setStyle(R.style.CustomShowcaseTheme2)
+                .setContentText("Drag items to feed your monster. Based the order you drag the items will set your preferences")
+                .setOnClickListener(this)
+                .build();
 
 
     }
     public void onClick(View view)
     {
+        clickCount++;
+        switch (clickCount)
+        {
+
+            case 2:
+                try {
+                    showcase.hide();
+                    Target viewTarget = new ViewTarget(findViewById(R.id.item1Column));
+                    showcase =new ShowcaseView.Builder(this)
+                            .setTarget(viewTarget)
+                            .setContentTitle("Feed The Monster")
+                            .setStyle(R.style.CustomShowcaseTheme2)
+                            .setContentText("This reperesents healthy ")
+                            .setOnClickListener(this)
+                            .build();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 3:
+                try {
+                    showcase.hide();
+                    Target viewTarget = new ViewTarget(findViewById(R.id.item2Column));
+                    showcase =new ShowcaseView.Builder(this)
+                            .setTarget(viewTarget)
+                            .setContentTitle("Feed The Monster")
+                            .setStyle(R.style.CustomShowcaseTheme2)
+                            .setContentText("This reperesents cheap")
+                            .setOnClickListener(this)
+                            .build();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 4:
+                try {
+                    showcase.hide();
+                    Target viewTarget = new ViewTarget(findViewById(R.id.item3Column));
+                    showcase = new ShowcaseView.Builder(this)
+                            .setTarget(viewTarget)
+                            .setContentTitle("Feed The Monster")
+                            .setStyle(R.style.CustomShowcaseTheme2)
+                            .setContentText("This reperesents homecooked")
+                            .setOnClickListener(this)
+                            .build();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 5:
+                showcase.hide();
+                break;
+            case 6:
+                break;
+        }
 
         switch(view.getId())
         {
             case R.id.mainFeedMonster:
-                clickCount++;
-                switch (clickCount)
-                {
-                    case 1:
-                        try {
-                            Target viewTarget = new ViewTarget(findViewById(R.id.monster));
-                            new ShowcaseView.Builder(this)
-                                    .setTarget(viewTarget)
-                                    .setContentTitle("Feed The Monster")
-                                    .setStyle(R.style.CustomShowcaseTheme2)
-                                    .setContentText("Drag items to feed your monster. Based the order you drag the items will set your preferences")
-                                    .hideOnTouchOutside()
-                                    .build();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        break;
-                    case 2:
-                        try {
-                            Target viewTarget = new ViewTarget(findViewById(R.id.item1Column));
-                            new ShowcaseView.Builder(this)
-                                    .setTarget(viewTarget)
-                                    .setContentTitle("Feed The Monster")
-                                    .setStyle(R.style.CustomShowcaseTheme2)
-                                    .setContentText("This reperesents healthy ")
-                                    .hideOnTouchOutside()
-                                    .build();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        break;
-                    case 3:
-                        try {
-                            Target viewTarget = new ViewTarget(findViewById(R.id.item2Column));
-                            new ShowcaseView.Builder(this)
-                                    .setTarget(viewTarget)
-                                    .setContentTitle("Feed The Monster")
-                                    .setStyle(R.style.CustomShowcaseTheme2)
-                                    .setContentText("This reperesents cheap")
-                                    .hideOnTouchOutside()
-                                    .build();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        break;
-                    case 4:
-                        try {
-                            Target viewTarget = new ViewTarget(findViewById(R.id.item3Column));
-                            new ShowcaseView.Builder(this)
-                                    .setTarget(viewTarget)
-                                    .setContentTitle("Feed The Monster")
-                                    .setStyle(R.style.CustomShowcaseTheme2)
-                                    .setContentText("This reperesents homecooked")
-                                    .hideOnTouchOutside()
-                                    .build();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
-                }
+
                 break;
         }
     }
