@@ -70,18 +70,35 @@
         </LinearLayout>
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/monsterColumn"
+        android:layout_weight="7"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/body0"
+            android:id="@+id/monster"
+            />
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="1">
+        >
 
-        <ImageView
+        <Button
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/monster"
-            />
+            android:layout_height="wrap_content"
+            android:text="RESET"
+            android:onClick="resetActivity"/>
+
     </LinearLayout>
 
 </LinearLayout>

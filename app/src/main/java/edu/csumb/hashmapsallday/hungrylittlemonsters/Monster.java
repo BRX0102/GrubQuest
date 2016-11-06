@@ -69,6 +69,13 @@ public class Monster {
             this.thirdChoice = thirdChoice;
         }
 
+        public void setMonsterAttributes(String eye, String eyebrows, String mouth, String accessory){
+            this.eye = eye;
+            this.eyebrows = eyebrows;
+            this.mouth = mouth;
+            this.accessory = accessory;
+        }
+
         public String getBirthday() {
             return birthday;
         }

@@ -25,7 +25,6 @@ public class Login extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
         //set the fragment initially
         LoginFragment fragment = new LoginFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction =
