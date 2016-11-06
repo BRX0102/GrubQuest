@@ -52,13 +52,31 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
     private Location tempLocation;
     private String TAG = "FEEDME";
 
+    private static boolean check = false;
+
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
+
+    //new call to global application
+    //MyApplication myApp =    (MyApplication) getApplicationContext();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feed_me);
+
+        //first setup
+        if(!check) {
+            //sets value for global variable
+            ////////////////////////////////////
+            MyApplication myApp = (MyApplication) getApplicationContext();
+            myApp.setExpPoints(experiencePoints);
+
+            Log.d(TAG, "after setting up exp on global");
+
+            check = true;
+            ////////////////////////////////////
+        }
 
         //Get Data Through Bundle
         database = new MySQLiteHelper(this);
@@ -101,6 +119,28 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.d(TAG, "onResume()");
+        MyApplication myApp = (MyApplication) getApplicationContext();
+        experiencePoints = myApp.getExpPoints();
+        Log.d(TAG, "exp points = "+experiencePoints);
+    }
+
+    protected void onPause() {
+        super.onPause();
+
+        Log.d(TAG, "onPause()");
+
+        //grabs the exp variable
+        MyApplication myApp = (MyApplication) getApplicationContext();
+        experiencePoints = myApp.getExpPoints();
+
+        //myApp.setExpPoints(70);
+        //Log.d(TAG, "set 70 ");
+    }
 
     public void expBar()
     {

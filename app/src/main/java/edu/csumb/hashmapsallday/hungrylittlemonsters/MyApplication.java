@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class MyApplication extends Application {
     final String TAG = "StarvingStudents";
-    private int gExpPoints = 0;
+    private static int gExpPoints = 60;
 
     private static HashMap<String, String> addresses = new HashMap<String, String>();
 
