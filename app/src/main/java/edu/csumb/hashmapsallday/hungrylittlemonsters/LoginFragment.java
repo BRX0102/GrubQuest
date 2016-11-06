@@ -73,7 +73,15 @@ public class LoginFragment extends Fragment{
             request.executeAsync();
 
             Intent toCreateAccount = new Intent(getActivity(), CreateAccount.class);
+
+            Bundle extras = new Bundle();
+            extras.putString("FIRSTNAME","firstNameHint");
+            extras.putString("BIRTHDAY","birthday");
+            toCreateAccount.putExtras(extras);
+
             startActivity(toCreateAccount);
+
+
         }
 
         @Override

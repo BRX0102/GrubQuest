@@ -130,7 +130,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/submitAvatar"
             android:text="Submit"
-            android:onClick=""
+            android:onClick="submitMonsterData"
             />
     </LinearLayout>
 </LinearLayout>

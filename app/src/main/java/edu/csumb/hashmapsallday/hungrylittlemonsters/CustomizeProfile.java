@@ -1,7 +1,9 @@
 package edu.csumb.hashmapsallday.hungrylittlemonsters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -25,9 +28,15 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
     private Button submitButton;
     private EditText weeklyBudget;
     private RadioGroup doCook;
-    private MySQLiteHelper database;
     private String monsterName;
+    private String transportation;
     private Monster monster;
+    private Context context;
+    private String birthday;
+//    MySQLiteHelper database = new MySQLiteHelper(this);
+
+    //SQLiteOpenHelper helper = new SQLiteOpenHelper(context, "StarvingStudents", null, 9);
+    //SQLiteDatabase database = helper.getWritableDatabase();
 
 
     String TAG = "Customize";
@@ -36,10 +45,18 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customize_profile);
 
+        Intent i = getIntent();
+        monsterName = i.getStringExtra("AVATARNAME");
+        birthday = i.getStringExtra("BIRTHDAY");
+
         addListenerOnSpinner();
 
         Button submitPref = (Button)findViewById(R.id.custProfSubmit);
         submitPref.setOnClickListener(this);
+        //monster = new Monster();
+        
+        //database = new MySQLiteHelper(getApplicationContext());
+        //database = context.getWritableDatabase();;
     }
 
     public void addListenerOnSpinner(){
@@ -53,7 +70,8 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
         MyApplication myApp = (MyApplication) getApplicationContext();
         myApp.setAddress("prefTransportation", parent.getItemAtPosition(position).toString());
         Log.d(TAG, "Pref Transportation "+myApp.getAddress("prefTransportation").toString());
-        monster.setTransportation(myApp.getAddress("prefTransportation").toString());
+        transportation = myApp.getAddress("prefTransportation").toString();
+        //monster.setTransportation(myApp.getAddress("prefTransportation").toString());
     }
 
     @Override
@@ -68,15 +86,32 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
             doCook = (RadioGroup)findViewById(R.id.iCook);
             String doCookString = ((RadioButton)findViewById(doCook.getCheckedRadioButtonId())).getText().toString();
             myApp.setAddress("doCook", doCookString);
-            monster.setCooking(doCookString);
+            //monster.setCooking(doCookString);
+
+            Log.d(TAG, "COOKING" + doCookString);
 
             weeklyBudget = (EditText)findViewById(R.id.weeklyBudget);
             myApp.setAddress("weeklyBudget", weeklyBudget.getText().toString());
-            monster.setWeeklyBudget(weeklyBudget.getText().toString());
+            //monster.setWeeklyBudget(weeklyBudget.getText().toString());
 
-            Log.d(TAG, "ADD Customize Profile: " + database.setCustomizeProfile(monsterName, monster));
+            Log.d(TAG, "BUDGET" + weeklyBudget);
+
+            //Log.d(TAG, "ADD Customize Profile: " + database.setCustomizeProfile(monsterName, monster));
+
+            //Monster temp = new Monster();
+            //temp = database.getMonster(monsterName);
+            //Log.d(TAG, temp.toString());
 
             Intent i = new Intent(this, FeedMonster.class);
+            Bundle b = new Bundle();
+
+            b.putString("AVATARNAME", monsterName);
+            b.putString("BIRTHDAY", birthday);
+            b.putString("COOKING", doCookString);
+            b.putString("TRANS", transportation);
+            b.putString("BUDGET", weeklyBudget.getText().toString());
+
+            i.putExtras(b);
             this.finish();
             startActivity(i);
         }

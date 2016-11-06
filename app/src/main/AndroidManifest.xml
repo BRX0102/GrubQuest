@@ -57,6 +57,12 @@
         <activity android:name=".FeedMe" />
         <activity android:name=".FeedMeMap" />
         <activity android:name=".CardBack" />
+        <activity android:name=".CustomizeProfile">
+            <intent-filter>
+                <action android:name="android.intent.action.CustomizeProfile" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
 
         <!--
