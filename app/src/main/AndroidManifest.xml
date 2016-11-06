@@ -36,35 +36,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".FeedMonster">
-            <intent-filter>
-                <action android:name="android.intent.action.FeedMonster" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-<<<<<<< HEAD
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-||||||| merged common ancestors
-        <activity android:name=".CustomizeProfile">
-            <intent-filter>
-                <action android:name="android.intent.action.CUSTOMIZE_PROFILE" />
-=======
->>>>>>> 4fc66bba232ee9562edf3611be95efdbcbb803e7
-
-<<<<<<< HEAD
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-||||||| merged common ancestors
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-=======
->>>>>>> 4fc66bba232ee9562edf3611be95efdbcbb803e7
+
     </application>
 
 </manifest>

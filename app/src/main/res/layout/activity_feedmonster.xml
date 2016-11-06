@@ -48,23 +48,10 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-<<<<<<< HEAD
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/coins"
                 android:id="@+id/item2" />
-
-||||||| merged common ancestors
-                android:layout_height="match_parent"
-                android:src="@drawable/broccoli"
-                android:id="@+id/item2"/>
-=======
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/broccoli"
-                android:id="@+id/item2" />
-
->>>>>>> 4fc66bba232ee9562edf3611be95efdbcbb803e7
 
         </LinearLayout>
 
