@@ -23,7 +23,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+
+import android.widget.ScrollView;
+
 import android.widget.Toast;
+
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 
 /**
@@ -41,6 +48,7 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
     private int slide=0;
     private Toast toast;
     private Context thisContext;
+
     private static boolean hasRun = false;
     private static Handler mainHandler;
     private static  String monsterName;
@@ -59,6 +67,13 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
     Context context;
 
     private static boolean check = false;
+
+    private Handler hopeHandler;
+    private int clickCount=0;
+    private RelativeLayout main;
+    private ShowcaseView showcase;
+
+
 
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
@@ -117,6 +132,8 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
         thirdChoice = i.getStringExtra("THIRD");
         color = i.getStringExtra("COLOR");
 
+
+
         if(hasRun == false) {
             doThisOnce(context);
         }
@@ -135,10 +152,12 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
         feedMe = (Button)findViewById(R.id.feedMeButton);
         feedMe.setOnClickListener(this);
         expBar();
+        instructions();
+
         //ImageView monsterImage = (ImageView) findViewById(R.id.monsterImage);
         expression();
         startIdleAnimation((ImageView)findViewById(R.id.monsterImage));
-        monsterDefaultFace(findViewById(R.id.monsterColumn));
+        monsterDefaultFace(findViewById(R.id.monsterColumn), i.getIntExtra("EYES", -1), i.getIntExtra("MOUTH", -1));
     }
 
     private void startIdleAnimation(ImageView monster){
@@ -171,6 +190,20 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
 
     }
 
+
+    private void monsterDefaultFace(View v, int eyesID, int mouthID){
+
+        ImageView eyes = new ImageView(this);
+        eyes.setImageResource(eyesID);
+        eyes.setId(View.generateViewId());
+        ((RelativeLayout)v).addView(eyes);
+
+        ImageView mouth = new ImageView(this);
+        mouth.setImageResource(mouthID);
+        ((RelativeLayout)v).addView(mouth);
+
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -194,10 +227,29 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
         //Log.d(TAG, "set 70 ");
     }
 
+    private void instructions()
+    {
+        main= (RelativeLayout) findViewById(R.id.feedMeMain);
+        main.setOnClickListener(this);
+
+        try {
+            Target viewTarget = new ViewTarget(findViewById(R.id.feedMeButton));
+              showcase =new ShowcaseView.Builder(this)
+                    .setTarget(viewTarget)
+                    .setContentTitle("Questing")
+                    .setStyle(R.style.CustomShowcaseTheme2)
+                    .setContentText("Click this button to view random quest.")
+                    .setOnClickListener(this)
+                    .build();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void expBar()
     {
          thisContext = getApplicationContext();
-          mainHandler = new Handler(thisContext.getMainLooper());
+          hopeHandler = new Handler(thisContext.getMainLooper());
         final ProgressBar experience = (ProgressBar)findViewById(R.id.expBar);
         final Thread t = new Thread() {
             @Override
@@ -217,7 +269,7 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
                                 if (experiencePoints < 50)
 
                                 {
-                                  mainHandler.post(new Runnable() {
+                                  hopeHandler.post(new Runnable() {
                                       @Override
                                       public void run() {
                                           //monsterImg.setImageResource(R.mipmap.other);
@@ -248,12 +300,64 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onClick(View view) {
+        clickCount++;
+        switch (clickCount)
+        {
+
+
+
+            case 2:
+                try {
+                    showcase.hide();
+                    Target viewTarget = new ViewTarget(findViewById(R.id.monsterImage));
+                    showcase =new ShowcaseView.Builder(this)
+                            .setTarget(viewTarget)
+                            .setContentTitle("Questing")
+                            .setStyle(R.style.CustomShowcaseTheme2)
+                            .setContentText("This shows your monster's current level. Gain experience from completing quest.")
+                            .setOnClickListener(this)
+                            .build();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 3:
+                try {
+                    showcase.hide();
+                    frame.setVisibility(View.VISIBLE);
+                    Target viewTarget = new ViewTarget(findViewById(R.id.container));
+                    showcase = new ShowcaseView.Builder(this)
+                            .setTarget(viewTarget)
+                            .setContentTitle("Feed The Monster")
+                            .setStyle(R.style.CustomShowcaseTheme2)
+                            .setContentText("Swipe on quest to get information about diffculty and experience of the chosen quest.")
+                            .setOnClickListener(this)
+                            .build();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 4:
+                showcase.hide();
+                frame.setVisibility(View.GONE);
+            case 5:
+
+                break;
+            case 6:
+                break;
+        }
 
         switch(view.getId()) {
+
 
             case R.id.feedMeButton:
                 frame.setVisibility(View.VISIBLE);
                 startWaveAnimation((ImageView)findViewById(R.id.monsterImage));
+                break;
+            case R.id.feedMeMain:
+
+
                 break;
 
         }

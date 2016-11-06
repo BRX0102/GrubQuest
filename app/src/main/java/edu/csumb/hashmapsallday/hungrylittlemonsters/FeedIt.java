@@ -47,6 +47,8 @@ public class FeedIt extends AppCompatActivity {
     private String doCook;
     private String transportation;
     private String budget;
+    private int eyeId;
+    private int mouthId;
     //MySQLiteHelper database;
 
 
@@ -65,6 +67,8 @@ public class FeedIt extends AppCompatActivity {
         doCook = i.getStringExtra("COOKING");
         transportation = i.getStringExtra("TRANS");
         budget = i.getStringExtra("BUDGET");
+        eyeId = i.getIntExtra("EYES", -1);
+        mouthId = i.getIntExtra("MOUTH", -1);
 
 
         startIdleAnimation(monster);
@@ -151,6 +155,20 @@ public class FeedIt extends AppCompatActivity {
 
     }
 
+    private void monsterDefaultFace(View v, int eyesID, int mouthID){
+
+        ImageView eyes = new ImageView(this);
+        eyes.setImageResource(eyesID);
+        eyes.setId(View.generateViewId());
+        ((RelativeLayout)v).addView(eyes);
+
+        ImageView mouth = new ImageView(this);
+        mouth.setImageResource(mouthID);
+        ((RelativeLayout)v).addView(mouth);
+
+    }
+
+
 
 
     private void monsterSetFaceHelper(View v, int drawableID, int selector){
@@ -177,7 +195,7 @@ public class FeedIt extends AppCompatActivity {
 
         setItemView(column1, new FoodDragItem(this), R.drawable.burger_bigger);
         monster.setOnDragListener(new DragListener());
-        monsterDefaultFace(findViewById(R.id.monsterColumn));
+        monsterDefaultFace(findViewById(R.id.monsterColumn), eyeId, mouthId);
     }
 
     private void submitMonsterPreferences(){
