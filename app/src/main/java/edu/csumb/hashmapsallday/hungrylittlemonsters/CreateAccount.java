@@ -137,9 +137,9 @@ public class CreateAccount extends Activity {
         b.putString("BIRTHDAY", birthday);
 
         customizeProfile.putExtras(b);
-        this.finish();
-        startActivity(customizeProfile);
 
+        startActivity(customizeProfile);
+        this.finish();
 
 
     }
