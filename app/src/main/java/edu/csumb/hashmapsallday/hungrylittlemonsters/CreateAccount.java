@@ -24,6 +24,7 @@ public class CreateAccount extends Activity {
     ImageView monster1;
     ImageView monster2;
     ImageView monster3;
+    private String color;
     private String avatarName;
     private String birthday = "";
     private String userName = "";
@@ -91,6 +92,7 @@ public class CreateAccount extends Activity {
                     // Display previous screen.
                     viewFlipper.showPrevious();
                 }
+
                 break;
         }
         return false;
@@ -106,35 +108,41 @@ public class CreateAccount extends Activity {
 
     public void submitMonsterData(View v){
         avatarName = ((EditText)findViewById(R.id.monsterName)).getText().toString();
-        //Karen please add this name to your database.
 
 
-        // Savethis to monster.name=((EditText)findViewById(R.id.monsterName)).getText().toString();
-        int monsterID = viewFlipper.getDisplayedChild();
+        int monsterID = viewFlipper.getChildAt(viewFlipper.getDisplayedChild()).getId();
+        //String mon = viewFlipper.
 
-        //ColorFilter color = ((ImageView)findViewById(monsterID)).getColorFilter();
+
+        if(monsterID == R.id.monster2){
+            color = "#00FF00";
+        }
+        else if(monsterID == R.id.monster3){
+            color = "#FFFF00";
+        }
+        else{
+            color = "default";
+        }
 
         newMonster = new Monster();
-//        database = new MySQLiteHelper(getApplicationContext());
-
         newMonster.setName(avatarName);
-
-//        database.setMonsterName(newMonster);
-
-        newMonster.setColor(Integer.toString(monsterID));
+        newMonster.setColor(color);
         newMonster.setBirthday(birthday);
 
-        Log.d(TAG, "Color:" + Integer.toString(monsterID));
+        Log.d(TAG, "ID: " + monsterID);
+        Log.d(TAG, "Color:" + color);
         Log.d(TAG, "NAME:" + avatarName);
-        Log.d(TAG, "Color:" + birthday);
+        Log.d(TAG, "birthday:" + birthday);
 //        Log.d(TAG, Integer.toString(database.setCreateAccount(avatarName, newMonster)));
         //database.setCreateAccount(avatarName, newMonster);
+
 
         Intent customizeProfile = new Intent(this, CustomizeProfile.class);
         Bundle b = new Bundle();
 
         b.putString("AVATARNAME", avatarName);
         b.putString("BIRTHDAY", birthday);
+        b.putString("COLOR", Integer.toString(monsterID));
 
         customizeProfile.putExtras(b);
 

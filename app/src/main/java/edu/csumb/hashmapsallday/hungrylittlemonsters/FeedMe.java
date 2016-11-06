@@ -72,6 +72,7 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
         secondChoice = i.getStringExtra("SECOND");
         thirdChoice = i.getStringExtra("THIRD");
 
+        Log.d(TAG, "dsd");
         // Create Monster Object
         Monster newMonster = new Monster();
         newMonster.setName(monsterName);
