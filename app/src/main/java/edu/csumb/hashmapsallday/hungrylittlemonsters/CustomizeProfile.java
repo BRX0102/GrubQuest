@@ -41,6 +41,9 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customize_profile);
 
+        doCook = (RadioGroup)findViewById(R.id.iCook);
+        doCook.check(R.id.iCookYes);
+
         Intent i = getIntent();
         monsterName = i.getStringExtra("AVATARNAME");
         birthday = i.getStringExtra("BIRTHDAY");
@@ -81,8 +84,6 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
     public void onClick(View v) {
         MyApplication myApp = (MyApplication) getApplicationContext();
         if(v.getId() == R.id.custProfSubmit){
-
-            doCook = (RadioGroup)findViewById(R.id.iCook);
 
 
             String doCookString = ((RadioButton)findViewById(doCook.getCheckedRadioButtonId())).getText().toString();
