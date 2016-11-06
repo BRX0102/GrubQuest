@@ -54,6 +54,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FeedMap">
+            <intent-filter>
+                <action android:name="android.intent.action.FeedMap" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <activity android:name=".CustomizeProfile">
             <intent-filter>
