@@ -117,6 +117,8 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
         thirdChoice = i.getStringExtra("THIRD");
         color = i.getStringExtra("COLOR");
 
+
+
         if(hasRun == false) {
             doThisOnce(context);
         }
@@ -138,7 +140,7 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
         //ImageView monsterImage = (ImageView) findViewById(R.id.monsterImage);
         expression();
         startIdleAnimation((ImageView)findViewById(R.id.monsterImage));
-        monsterDefaultFace(findViewById(R.id.monsterColumn));
+        monsterDefaultFace(findViewById(R.id.monsterColumn), i.getIntExtra("EYES", -1), i.getIntExtra("MOUTH", -1));
     }
 
     private void startIdleAnimation(ImageView monster){
@@ -167,6 +169,19 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
 
         ImageView mouth = new ImageView(this);
         mouth.setImageResource(R.drawable.grinsmile);
+        ((RelativeLayout)v).addView(mouth);
+
+    }
+
+    private void monsterDefaultFace(View v, int eyesID, int mouthID){
+
+        ImageView eyes = new ImageView(this);
+        eyes.setImageResource(eyesID);
+        eyes.setId(View.generateViewId());
+        ((RelativeLayout)v).addView(eyes);
+
+        ImageView mouth = new ImageView(this);
+        mouth.setImageResource(mouthID);
         ((RelativeLayout)v).addView(mouth);
 
     }

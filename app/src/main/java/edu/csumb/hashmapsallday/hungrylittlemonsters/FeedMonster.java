@@ -48,6 +48,8 @@ public class FeedMonster extends AppCompatActivity {
     private String color;
     private String transportation;
     private String budget;
+    private String eyeFileName;
+    private String mouthFileName;
     //MySQLiteHelper database;
 
 
@@ -119,11 +121,15 @@ public class FeedMonster extends AppCompatActivity {
                     }
                     else if(counter == 3){
                         thirdChoice = Integer.toString(temp.getId());
-                        submitMonsterPreferences();
+
                     }
                     monsterSetFace(findViewById(R.id.monsterColumn));
                     //addStatModifier(FoodDragItem);
                     temp.setVisibility(View.INVISIBLE);
+
+                    if(counter == 3){
+                        submitMonsterPreferences();
+                    }
                     return true;
             }
             return false;
@@ -166,6 +172,7 @@ public class FeedMonster extends AppCompatActivity {
 
         mouth = new ImageView(this);
         mouth.setImageResource(R.drawable.grinsmile);
+        mouth.setId(View.generateViewId());
         ((RelativeLayout)v).addView(mouth);
 
     }
@@ -178,20 +185,26 @@ public class FeedMonster extends AppCompatActivity {
 
         if (selector == 0) {
             monsterSetFaceHelper(v, R.drawable.crosseye, 1);
+            eyeFileName = "crosseye";
         } else if (selector == 1) {
             monsterSetFaceHelper(v, R.drawable.closereyes, 1);
+            eyeFileName = "closereyes";
         } else if (selector == 2) {
             monsterSetFaceHelper(v, R.drawable.crazyeye, 1);
+            eyeFileName = "crazyeye";
         }
 
         selector = new Random().nextInt(3);
 
         if (selector ==0) {
             monsterSetFaceHelper(v, R.drawable.grinsmile, 2);
+            mouthFileName = "grinsmile";
         } else if (selector ==1) {
             monsterSetFaceHelper(v, R.drawable.smile, 2);
+            mouthFileName = "smile";
         } else if (selector ==2) {
             monsterSetFaceHelper(v, R.drawable.licksmile, 2);
+            mouthFileName = "licksmile";
         }
 
 
@@ -247,6 +260,8 @@ public class FeedMonster extends AppCompatActivity {
         b.putString("SECOND", secondChoice);
         b.putString("THIRD", thirdChoice);
         b.putString("COLOR", color);
+        b.putInt("EYES", eyes.getResources().getIdentifier(eyeFileName, "drawable", getPackageName()));
+        b.putInt("MOUTH", mouth.getResources().getIdentifier(mouthFileName, "drawable", getPackageName()));
 
         i.putExtras(b);
 
