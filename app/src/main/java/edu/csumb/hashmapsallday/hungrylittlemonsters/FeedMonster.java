@@ -23,6 +23,13 @@ public class FeedMonster extends AppCompatActivity {
 
     View column1, column2, column3;
     ImageView monster;
+    private static Integer counter = 0;
+    private MySQLiteHelper database;
+    private Monster newMonster;
+    private String monsterName;
+    private String firstChoice;
+    private String secondChoice;
+    private String thirdChoice;
 
 
     @Override
@@ -48,13 +55,13 @@ public class FeedMonster extends AppCompatActivity {
         setItemView(column3, new FoodDragItem(this), R.drawable.utensils);
         monster.setOnDragListener(new DragListener());
 
-
-
     }
 
     private class DragListener implements View.OnDragListener {
 
         public boolean onDrag(View v, DragEvent event) {
+            counter++;
+
             int action = event.getAction();
             switch (action) {
                 case DragEvent.ACTION_DRAG_STARTED:
@@ -76,6 +83,17 @@ public class FeedMonster extends AppCompatActivity {
                 case DragEvent.ACTION_DROP:
                     // Dropped foodTile on monster
                     FoodDragItem temp = (FoodDragItem) event.getLocalState();
+
+                    if(counter == 1){
+                        firstChoice = Integer.toString(temp.getId());
+                    }
+                    else if(counter == 2){
+                        secondChoice = Integer.toString(temp.getId());
+                    }
+                    else if(counter == 3){
+                        thirdChoice = Integer.toString(temp.getId());
+                    }
+
                     //addStatModifier(FoodDragItem);
                     temp.setVisibility(View.INVISIBLE);
                     return true;
@@ -90,6 +108,12 @@ public class FeedMonster extends AppCompatActivity {
         ((ViewGroup)column).removeAllViews();
         item.setImageResource(itemID);
         ((ViewGroup)column).addView(item);
+
+
     }
+
+    // Still need to add choices to newMonster and then add newMonster to database
+    // newMonster.setChoices(firstChoice, secondChoice, thirdChoice);
+    // database.setFeedMonster(monsterName, newMonster);
 
 }
