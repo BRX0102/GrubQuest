@@ -689,6 +689,8 @@ public class FeedMap extends FragmentActivity implements OnMapReadyCallback, Con
 
                 //LAUNCH INTENT TO FeedIt Here
                 //////////////////////////////////
+                Intent i = new Intent(getApplicationContext(), FeedIt.class);
+                startActivity(i);
 
                 //////////////////////////////////
             }
