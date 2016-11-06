@@ -21,6 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.Random;
+
 import static android.R.attr.id;
 
 
@@ -32,6 +34,9 @@ public class FeedMonster extends AppCompatActivity {
 
     View column1, column2, column3;
     ImageView monster;
+    ImageView eyes;
+    ImageView mouth;
+    ImageView accessory;
     private static Integer counter = 0;
     private Monster newMonster;
     private String monsterName;
@@ -67,7 +72,7 @@ public class FeedMonster extends AppCompatActivity {
         startIdleAnimation(monster);
 
         resetActivity(null);
-        monsterDefaultFace(findViewById(R.id.monsterColumn));
+        //monsterDefaultFace(findViewById(R.id.monsterColumn));
 //        column1.setOnDragListener(new DragListener());
 //        ((ViewGroup)column1).removeAllViews();
 //        FoodDragItem temp = new FoodDragItem(this);
@@ -102,7 +107,7 @@ public class FeedMonster extends AppCompatActivity {
                     startWaveAnimation(monster);
 
                     // Dropped foodTile on monster
-                    FoodDragItem temp = (FoodDragItem) event.getLocalState();
+                    FoodDragItem temp = (FoodDragItem)event.getLocalState();
 
                     if(counter == 1){
                         firstChoice = Integer.toString(temp.getId());
@@ -114,7 +119,7 @@ public class FeedMonster extends AppCompatActivity {
                         thirdChoice = Integer.toString(temp.getId());
                         submitMonsterPreferences();
                     }
-
+                    monsterSetFace(findViewById(R.id.monsterColumn));
                     //addStatModifier(FoodDragItem);
                     temp.setVisibility(View.INVISIBLE);
                     return true;
@@ -126,7 +131,7 @@ public class FeedMonster extends AppCompatActivity {
     private void setItemView(View column, FoodDragItem item, int itemID){
 
 
-        column.setOnDragListener(new DragListener());
+        // column.setOnDragListener(new DragListener());
         ((ViewGroup)column).removeAllViews();
         item.setImageResource(itemID);
         ((ViewGroup)column).addView(item);
@@ -152,15 +157,67 @@ public class FeedMonster extends AppCompatActivity {
 
     private void monsterDefaultFace(View v){
 
-        ImageView eyes = new ImageView(this);
+        eyes = new ImageView(this);
         eyes.setImageResource(R.drawable.crosseye);
         eyes.setId(View.generateViewId());
         ((RelativeLayout)v).addView(eyes);
 
-        ImageView mouth = new ImageView(this);
+        mouth = new ImageView(this);
         mouth.setImageResource(R.drawable.grinsmile);
         ((RelativeLayout)v).addView(mouth);
 
+    }
+
+    private void monsterSetFace(View v){
+
+        int selector;
+
+        selector = new Random().nextInt(3);
+
+        if (selector == 0) {
+            monsterSetFaceHelper(v, R.drawable.crosseye, 1);
+        } else if (selector == 1) {
+            monsterSetFaceHelper(v, R.drawable.closereyes, 1);
+        } else if (selector == 2) {
+            monsterSetFaceHelper(v, R.drawable.crazyeye, 1);
+        }
+
+        selector = new Random().nextInt(3);
+
+        if (selector ==0) {
+            monsterSetFaceHelper(v, R.drawable.grinsmile, 2);
+        } else if (selector ==1) {
+            monsterSetFaceHelper(v, R.drawable.smile, 2);
+        } else if (selector ==2) {
+            monsterSetFaceHelper(v, R.drawable.licksmile, 2);
+        }
+
+
+
+//        if (selector ==0) {
+//            monsterSetFaceHelper(v, R.drawable.horntail, 3);
+//        } else if (selector ==1) {
+//            monsterSetFaceHelper(v, R.drawable.horns, 3);
+//        } else if (selector ==2) {
+//            monsterSetFaceHelper(v, R.drawable.batwing, 3);
+//        }
+
+
+    }
+
+    private void monsterSetFaceHelper(View v, int drawableID, int selector){
+
+        if(selector == 1) {
+            eyes.setImageResource(drawableID);
+        } else if(selector == 2) {
+            mouth.setImageResource(drawableID);
+        } else if(selector == 3){
+            accessory = new ImageView(this);
+            int tempID = View.generateViewId();
+            accessory.setId(tempID);
+            accessory.setImageResource(drawableID);
+            ((RelativeLayout) v).addView(accessory);
+        }
     }
 
 
@@ -176,6 +233,8 @@ public class FeedMonster extends AppCompatActivity {
         setItemView(column2, new FoodDragItem(this), R.drawable.coins);
         setItemView(column3, new FoodDragItem(this), R.drawable.utensils);
         monster.setOnDragListener(new DragListener());
+        monsterDefaultFace(findViewById(R.id.monsterColumn));
+        counter = 0;
     }
 
     private void submitMonsterPreferences(){

@@ -41,11 +41,12 @@
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:gravity="center">
+                android:gravity="center"
+                android:id="@+id/monster">
 
 
                 <ImageView
-                    android:id="@+id/monster"
+                    android:id="@+id/monsterImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/body0" />
@@ -68,11 +69,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:id="@+id/monster2">
 
                 <ImageView
                     android:layout_marginTop="15dp"
-                    android:id="@+id/monster2"
+                    android:id="@+id/monster2Image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/body0" />
@@ -94,12 +96,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:id="@+id/monster3">
 
 
                 <ImageView
                     android:layout_marginTop="15dp"
-                    android:id="@+id/monster3"
+                    android:id="@+id/monster3Image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/body0" />
