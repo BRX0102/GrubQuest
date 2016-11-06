@@ -94,6 +94,10 @@ public class FeedMap extends FragmentActivity implements OnMapReadyCallback, Con
     String businessName = "Google";
     String businessLatitude = "37.421707";
     String businessLongitude = "-122.084231";
+
+    private double DLatitude = 37.421707;
+    private double DLongtitude = -122.084231;
+
     /////////////////////////////////////////////////////////
 
     /////////////////////////////////////////////////////////////
@@ -114,9 +118,9 @@ public class FeedMap extends FragmentActivity implements OnMapReadyCallback, Con
         /////////////////////////////////////////////////////
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
-            businessName = bundle.getString("name");
-            businessLatitude = bundle.getString("latitude");
-            businessLongitude = bundle.getString("longitude");
+            businessName = bundle.getString("NAME");
+            businessLatitude = bundle.getString("LATITUDE");
+            businessLongitude = bundle.getString("LONGITUDE");
         }
         ////////////////////////////////////////////////////
 
@@ -152,8 +156,11 @@ public class FeedMap extends FragmentActivity implements OnMapReadyCallback, Con
         //CalculationByDistance(latLng, latLng2);
 
         //set for BIT
-        destCoords = new LatLng(36.652389, -121.797291);
+        //destCoords = new LatLng(36.652389, -121.797291);
+        DLatitude = Double.parseDouble(businessLatitude);
+        DLongtitude = Double.parseDouble(businessLongitude);
 
+        destCoords = new LatLng(DLatitude, DLongtitude);
         //when connected gets the distance
         //CalculationByDistance(currCoords, destCoords);
         /////////////////////////////////////
@@ -388,7 +395,7 @@ public class FeedMap extends FragmentActivity implements OnMapReadyCallback, Con
                     Log.d(TAG, "permission denied");
 
                     //RETURN TO ORIGINAL ACTIVITY
-                    Intent i = new Intent(getApplicationContext(), Login.class);
+                    Intent i = new Intent(getApplicationContext(), FeedMe.class);
                     startActivity(i);
                 }
                 return;
