@@ -3,6 +3,7 @@ package edu.csumb.hashmapsallday.hungrylittlemonsters;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -11,9 +12,11 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.DragEvent;
 
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.github.amlcurran.showcaseview.*;
+import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
 import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
 import com.github.amlcurran.showcaseview.targets.Target;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
@@ -49,7 +53,7 @@ public class FeedMonster extends AppCompatActivity implements View.OnClickListen
     private String budget;
     MySQLiteHelper database;
     private LinearLayout main;
-    private int clickCount=0;
+    private int clickCount=1;
 
 
     @Override
@@ -98,6 +102,7 @@ public class FeedMonster extends AppCompatActivity implements View.OnClickListen
     }
     public void onClick(View view)
     {
+
         switch(view.getId())
         {
             case R.id.mainFeedMonster:
@@ -109,8 +114,9 @@ public class FeedMonster extends AppCompatActivity implements View.OnClickListen
                             Target viewTarget = new ViewTarget(findViewById(R.id.monster));
                             new ShowcaseView.Builder(this)
                                     .setTarget(viewTarget)
-                                    .setContentTitle("ShowcaseView")
-                                    .setContentText("This is highlighting the Home button")
+                                    .setContentTitle("Feed The Monster")
+                                    .setStyle(R.style.CustomShowcaseTheme2)
+                                    .setContentText("Drag items to feed your monster. Based the order you drag the items will set your preferences")
                                     .hideOnTouchOutside()
                                     .build();
                         } catch (Exception e) {
@@ -122,8 +128,9 @@ public class FeedMonster extends AppCompatActivity implements View.OnClickListen
                             Target viewTarget = new ViewTarget(findViewById(R.id.item1Column));
                             new ShowcaseView.Builder(this)
                                     .setTarget(viewTarget)
-                                    .setContentTitle("ShowcaseView")
-                                    .setContentText("This is highlighting the Home button")
+                                    .setContentTitle("Feed The Monster")
+                                    .setStyle(R.style.CustomShowcaseTheme2)
+                                    .setContentText("This reperesents healthy ")
                                     .hideOnTouchOutside()
                                     .build();
                         } catch (Exception e) {
@@ -135,8 +142,9 @@ public class FeedMonster extends AppCompatActivity implements View.OnClickListen
                             Target viewTarget = new ViewTarget(findViewById(R.id.item2Column));
                             new ShowcaseView.Builder(this)
                                     .setTarget(viewTarget)
-                                    .setContentTitle("ShowcaseView")
-                                    .setContentText("This is highlighting the Home button")
+                                    .setContentTitle("Feed The Monster")
+                                    .setStyle(R.style.CustomShowcaseTheme2)
+                                    .setContentText("This reperesents cheap")
                                     .hideOnTouchOutside()
                                     .build();
                         } catch (Exception e) {
@@ -148,8 +156,9 @@ public class FeedMonster extends AppCompatActivity implements View.OnClickListen
                             Target viewTarget = new ViewTarget(findViewById(R.id.item3Column));
                             new ShowcaseView.Builder(this)
                                     .setTarget(viewTarget)
-                                    .setContentTitle("ShowcaseView")
-                                    .setContentText("This is highlighting the Home button")
+                                    .setContentTitle("Feed The Monster")
+                                    .setStyle(R.style.CustomShowcaseTheme2)
+                                    .setContentText("This reperesents homecooked")
                                     .hideOnTouchOutside()
                                     .build();
                         } catch (Exception e) {
@@ -164,6 +173,9 @@ public class FeedMonster extends AppCompatActivity implements View.OnClickListen
                 break;
         }
     }
+
+
+
     private class DragListener implements View.OnDragListener {
 
         public boolean onDrag(View v, DragEvent event) {

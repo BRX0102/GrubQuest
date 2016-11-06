@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
 <RelativeLayout
-
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/feedMeMain">
 
     <Button
         android:id="@+id/feedMeButton"
@@ -94,6 +96,7 @@
             android:textAllCaps="false"
             android:padding="50dp"
             android:text="Quest it has this infomration that would be Greate to Have yeas I got this workingso Happey"/>
+
     <Button
 
         android:layout_marginLeft="65sp"
@@ -125,6 +128,12 @@
 
 
    </FrameLayout>
+    <Button
+        android:visibility="invisible"
+        android:text="hello"
+        android:layout_width="match_parent"
+        android:layout_height="240sp"
+        android:layout_alignTop="@id/RelativeProgress"/>
 </RelativeLayout>
 
     </ScrollView>

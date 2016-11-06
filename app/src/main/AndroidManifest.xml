@@ -69,7 +69,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".FeedMe"></activity>
+        <activity android:name=".FeedMe">
+            <intent-filter>
+                <action android:name="android.intent.action.FeedMe" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".FeedMeMap"></activity>
         <activity android:name=".CardBack"></activity>
 
