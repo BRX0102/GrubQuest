@@ -64,6 +64,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
     private static final String KEY_EYE = "eye";
     private static final String KEY_MOUTH = "mouth";
     private static final String KEY_ACCESSORY = "accessory";
+    private static final String KEY_COLOR = "color";
 
     // Database Version
     private static final int DATABASE_VERSION = 9;
@@ -110,7 +111,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
                 "eyebrows TEXT, " +
                 "eye TEXT, " +
                 "mouth TEXT, " +
-                "accessory TEXT)";
+                "accessory TEXT, " +
+                "color TEXT)";
 
         // execute an SQL statement to create the table
         db.execSQL(CREATE_LOCATION_TABLE);
@@ -246,7 +248,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
         return name;
     }
 
-    public boolean checkMonsterName (String name) {
+    public boolean checkMonsterName(String name) {
 
         // 1. build the query
         String query = "SELECT monster_name FROM " + TABLE_MONSTER;
@@ -289,10 +291,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
             ContentValues values = new ContentValues();
             values.put(KEY_NAME, monster.getName());
             values.put(KEY_BIRTHDAY, monster.getBirthday());
-            values.put(KEY_EYEBROWS, monster.getEyebrows());
-            values.put(KEY_EYE, monster.getEye());
-            values.put(KEY_MOUTH, monster.getMouth());
-            values.put(KEY_ACCESSORY, monster.getAccessory());
+            values.put(KEY_COLOR, monster.getColor());
 
             // updating row
             return db.update(TABLE_MONSTER, values, KEY_NAME + " = ?",

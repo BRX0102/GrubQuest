@@ -1,5 +1,6 @@
 package edu.csumb.hashmapsallday.hungrylittlemonsters;
 
+import android.graphics.ColorFilter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -23,6 +24,7 @@ public class Monster {
         private String eyebrows;
         private String mouth;
         private String accessory;
+        private String color;
 
         public Monster(){
 
@@ -111,9 +113,13 @@ public class Monster {
             return doCook;
         }
 
+        public String getColor() { return color; }
+
         public String getTransportation() {
             return transportation;
         }
+
+        public void setColor(String color) { this.color = color;  }
 
         @Override
         public String toString() {

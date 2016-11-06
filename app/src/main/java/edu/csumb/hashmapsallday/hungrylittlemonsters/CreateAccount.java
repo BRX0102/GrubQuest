@@ -13,9 +13,10 @@ import android.widget.ViewFlipper;
 public class CreateAccount extends Activity {
     private ViewFlipper viewFlipper;
     private float lastX;
-    ImageView monster1 = (ImageView)findViewById(R.id.monster);
-    ImageView monster2 = (ImageView)findViewById(R.id.monster2);
-    ImageView monster3 = (ImageView)findViewById(R.id.monster3);
+    Monster newMonster;
+    ImageView monster1;
+    ImageView monster2;
+    ImageView monster3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,12 @@ public class CreateAccount extends Activity {
     public void submitMonsterData(){
         // Savethis to monster.name=((EditText)findViewById(R.id.monsterName)).getText().toString();
         int monsterID = viewFlipper.getDisplayedChild();
-        ColorFilter color = ((ImageView)findViewById(monsterID)).getColorFilter();
+
+        //ColorFilter color = ((ImageView)findViewById(monsterID)).getColorFilter();
+
+       // newMonster.setName((EditText)findViewById(R.id.monsterName).getText().toString());
+        newMonster.setColor(Integer.toString(monsterID));
+
+
     }
 }
