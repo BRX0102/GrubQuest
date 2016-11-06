@@ -121,7 +121,7 @@ public class FeedMonster extends AppCompatActivity implements View.OnClickListen
                             .setTarget(viewTarget)
                             .setContentTitle("Feed The Monster")
                             .setStyle(R.style.CustomShowcaseTheme2)
-                            .setContentText("This reperesents healthy ")
+                            .setContentText("This represents healthy ")
                             .setOnClickListener(this)
                             .build();
                 } catch (Exception e) {
@@ -136,7 +136,7 @@ public class FeedMonster extends AppCompatActivity implements View.OnClickListen
                             .setTarget(viewTarget)
                             .setContentTitle("Feed The Monster")
                             .setStyle(R.style.CustomShowcaseTheme2)
-                            .setContentText("This reperesents cheap")
+                            .setContentText("This represents cheap")
                             .setOnClickListener(this)
                             .build();
                 } catch (Exception e) {
@@ -151,7 +151,7 @@ public class FeedMonster extends AppCompatActivity implements View.OnClickListen
                             .setTarget(viewTarget)
                             .setContentTitle("Feed The Monster")
                             .setStyle(R.style.CustomShowcaseTheme2)
-                            .setContentText("This reperesents homecooked")
+                            .setContentText("This represents homecooked")
                             .setOnClickListener(this)
                             .build();
                 } catch (Exception e) {

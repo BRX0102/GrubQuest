@@ -190,6 +190,7 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
                 break;
             case 4:
                 showcase.hide();
+                frame.setVisibility(View.GONE);
             case 5:
 
                 break;
