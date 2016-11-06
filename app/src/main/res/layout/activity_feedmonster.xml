@@ -6,6 +6,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="22dp"
+            android:text="Feed your avatar in order of preference!"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="10">
 
@@ -15,6 +29,7 @@
             android:orientation="vertical"
             android:layout_weight="1"
             android:id="@+id/item1Column">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -29,11 +44,27 @@
             android:orientation="vertical"
             android:layout_weight="1"
             android:id="@+id/item2Column">
+
+
             <ImageView
                 android:layout_width="wrap_content"
+<<<<<<< HEAD
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/coins"
+                android:id="@+id/item2" />
+
+||||||| merged common ancestors
                 android:layout_height="match_parent"
                 android:src="@drawable/broccoli"
                 android:id="@+id/item2"/>
+=======
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/broccoli"
+                android:id="@+id/item2" />
+
+>>>>>>> 4fc66bba232ee9562edf3611be95efdbcbb803e7
 
         </LinearLayout>
 
@@ -46,7 +77,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/broccoli"
+                android:src="@drawable/utensils"
                 android:id="@+id/item3"/>
 
         </LinearLayout>
@@ -56,12 +87,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/monster"
+            android:src="@drawable/body0"
             android:id="@+id/monster"
             />
     </LinearLayout>
