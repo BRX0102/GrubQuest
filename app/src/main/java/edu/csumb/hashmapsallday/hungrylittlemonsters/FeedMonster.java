@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 public class FeedMonster extends AppCompatActivity {
@@ -41,11 +42,9 @@ public class FeedMonster extends AppCompatActivity {
         column2 = (View)findViewById(R.id.item2Column);
         column3 = (View)findViewById(R.id.item3Column);
         monster = ((ImageView)findViewById(R.id.monster));
-        monster.setBackgroundResource(R.drawable.idle_monster);
 
-        AnimationDrawable frameAnimation = (AnimationDrawable)monster.getBackground();
+        startIdleAnimation(monster);
 
-        frameAnimation.start();
 //        column1.setOnDragListener(new DragListener());
 //        ((ViewGroup)column1).removeAllViews();
 //        FoodDragItem temp = new FoodDragItem(this);
@@ -94,6 +93,7 @@ public class FeedMonster extends AppCompatActivity {
                     }
                     else if(counter == 3){
                         thirdChoice = Integer.toString(temp.getId());
+                        submitMonsterPreferences();
                     }
 
                     //addStatModifier(FoodDragItem);
@@ -106,10 +106,35 @@ public class FeedMonster extends AppCompatActivity {
 
     private void setItemView(View column, FoodDragItem item, int itemID){
 
+
         //column.setOnDragListener(new DragListener());
         ((ViewGroup)column).removeAllViews();
         item.setImageResource(itemID);
         ((ViewGroup)column).addView(item);
+    }
+
+    private void passAnimationBackground(){
+
+    }
+
+    private void startIdleAnimation(ImageView monster){
+
+
+        monster.setBackgroundResource(R.drawable.idle_monster);
+
+        AnimationDrawable frameAnimation = (AnimationDrawable)monster.getBackground();
+
+        frameAnimation.start();
+    }
+
+    private void animateEatingObject(ImageView monster){
+
+
+
+        startIdleAnimation(monster);
+    }
+
+    private void submitMonsterPreferences(){
 
 
     }

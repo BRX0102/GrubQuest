@@ -13,9 +13,9 @@ import android.widget.ViewFlipper;
 public class CreateAccount extends Activity {
     private ViewFlipper viewFlipper;
     private float lastX;
-    ImageView monster1 = (ImageView)findViewById(R.id.monster);
-    ImageView monster2 = (ImageView)findViewById(R.id.monster2);
-    ImageView monster3 = (ImageView)findViewById(R.id.monster3);
+    ImageView monster1;
+    ImageView monster2;
+    ImageView monster3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
