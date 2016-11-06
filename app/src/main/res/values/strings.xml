@@ -13,5 +13,6 @@
 
     <string name="facebook_app_id">1603512753287735</string>
     <string name="title_activity_feed_map">Map</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
