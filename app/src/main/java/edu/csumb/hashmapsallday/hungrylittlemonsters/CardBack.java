@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Random;
+
 /**
  * Created by brand on 11/5/2016.
  */
@@ -28,16 +30,29 @@ public class CardBack extends AppCompatActivity {
         setContentView(R.layout.card_back);
         TextView text = new TextView(this);
         text=(TextView)findViewById(R.id.backText);
+
+        TextView difficulty = new TextView(this);
+        difficulty =(TextView) findViewById(R.id.DifficultyMessage);
+
+        TextView experience = new TextView(this);
+        experience =(TextView) findViewById(R.id.experienceMessage);
+
+        Random rand = new Random();
+        int  randomNumber = rand.nextInt(10) + 1;
+
         if(name.isEmpty()){
             text.setText("Your Reward is at Taco Bell");
-            // Taco Bell | 1830 Fremont Blvd, Seaside, CA 93955 | 36.615726 | -121.842024
             name = "Taco Bell";
             latitude = "36.615726";
             longitude = "-121.842024";
+            difficulty.setText("Difficulty: " + randomNumber);
+            experience.setText("Experience: " + rand.nextInt(20) + 1);
 
         }
         else{
             text.setText("Your Reward is at " + name);
+            difficulty.setText("Difficulty: " + randomNumber);
+            experience.setText("Experience: " + rand.nextInt(20) + 1);
         }
 
         Button acceptButton = (Button) findViewById(R.id.acceptQuestButton);

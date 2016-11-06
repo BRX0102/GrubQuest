@@ -36,7 +36,8 @@
             android:text="Do you cook?"
             android:layout_weight="1"
             android:textSize="20dp"
-            android:gravity="left" />
+            android:gravity="left"
+            />
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,14 +49,16 @@
                 android:layout_height="wrap_content"
                 android:text="Yes"
                 android:textSize="20dp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/yes"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="No"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:id="@+id/no"/>
         </RadioGroup>
     </LinearLayout>
     <LinearLayout

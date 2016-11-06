@@ -50,6 +50,7 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
 
         Button submitPref = (Button)findViewById(R.id.custProfSubmit);
         submitPref.setOnClickListener(this);
+
         //monster = new Monster();
         
         //database = new MySQLiteHelper(getApplicationContext());
@@ -80,7 +81,10 @@ public class CustomizeProfile extends AppCompatActivity implements AdapterView.O
     public void onClick(View v) {
         MyApplication myApp = (MyApplication) getApplicationContext();
         if(v.getId() == R.id.custProfSubmit){
+
             doCook = (RadioGroup)findViewById(R.id.iCook);
+
+
             String doCookString = ((RadioButton)findViewById(doCook.getCheckedRadioButtonId())).getText().toString();
             myApp.setAddress("doCook", doCookString);
             //monster.setCooking(doCookString);
