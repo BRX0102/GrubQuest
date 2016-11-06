@@ -1,6 +1,7 @@
 package edu.csumb.hashmapsallday.hungrylittlemonsters;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
@@ -20,6 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import static android.R.attr.id;
+
 
 public class FeedMonster extends AppCompatActivity {
 
@@ -36,6 +39,8 @@ public class FeedMonster extends AppCompatActivity {
     private String firstChoice;
     private String secondChoice;
     private String thirdChoice;
+    private int eyes;
+    private int mouth;
 
 
     @Override
@@ -89,7 +94,7 @@ public class FeedMonster extends AppCompatActivity {
                     }
                     else if(counter == 3){
                         thirdChoice = Integer.toString(temp.getId());
-                        submitMonsterPreferences();
+                        //submitMonsterPreferences();
                     }
 
                     //addStatModifier(FoodDragItem);
@@ -103,7 +108,7 @@ public class FeedMonster extends AppCompatActivity {
     private void setItemView(View column, FoodDragItem item, int itemID){
 
 
-        //column.setOnDragListener(new DragListener());
+        column.setOnDragListener(new DragListener());
         ((ViewGroup)column).removeAllViews();
         item.setImageResource(itemID);
         ((ViewGroup)column).addView(item);
@@ -131,6 +136,7 @@ public class FeedMonster extends AppCompatActivity {
 
         ImageView eyes = new ImageView(this);
         eyes.setImageResource(R.drawable.crosseye);
+        eyes.setId(View.generateViewId());
         ((RelativeLayout)v).addView(eyes);
 
         ImageView mouth = new ImageView(this);
@@ -154,10 +160,17 @@ public class FeedMonster extends AppCompatActivity {
         monster.setOnDragListener(new DragListener());
     }
 
-    private void submitMonsterPreferences(){
-
-
-    }
+//    private void submitMonsterPreferences(){
+//        Monster newMonster = new Monster();
+//
+//        newMonster.setChoices(firstChoice,secondChoice,thirdChoice);
+//        newMonster.setMonsterAttributes();
+//
+//        Intent i = new Intent(this, FeedMe.class);
+//        this.finish();
+//        startActivity(i);
+//
+//    }
 
     // Still need to add choices to newMonster and then add newMonster to database
     // newMonster.setChoices(firstChoice, secondChoice, thirdChoice);
