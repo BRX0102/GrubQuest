@@ -17,16 +17,22 @@
         android:textSize="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_centerHorizontal="true"/>
-    <ImageView
-        android:layout_marginTop="5sp"
-        android:id="@+id/monsterImage"
-        android:layout_below="@id/feedMeButton"
+    <RelativeLayout
         android:layout_width="150sp"
         android:layout_height="150sp"
-        android:clickable="true"
-        android:layout_centerHorizontal="true"
-        android:background="@mipmap/ic_launcher"
-    />
+        android:id="@+id/animationColumn"
+        android:layout_below="@id/feedMeButton"
+        android:layout_centerHorizontal="true">
+        <ImageView
+            android:layout_marginTop="5sp"
+            android:id="@+id/monsterImage"
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:clickable="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/body0"
+        />
+    </RelativeLayout>
     <TextView
         android:layout_centerHorizontal="true"
         android:id="@+id/level"
@@ -35,7 +41,7 @@
         android:text="Lvl 1"
         android:textSize="20dp"
         android:textColor="#000000"
-        android:layout_below="@id/monsterImage"
+        android:layout_below="@id/animationColumn"
         android:layout_marginBottom="5dp"/>
      <RelativeLayout
          android:layout_below="@id/level"

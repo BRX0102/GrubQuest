@@ -45,6 +45,7 @@ public class FeedMonster extends AppCompatActivity {
     private String thirdChoice;
     private String birthday;
     private String doCook;
+    private String color;
     private String transportation;
     private String budget;
     //MySQLiteHelper database;
@@ -67,6 +68,7 @@ public class FeedMonster extends AppCompatActivity {
         doCook = i.getStringExtra("COOKING");
         transportation = i.getStringExtra("TRANS");
         budget = i.getStringExtra("BUDGET");
+        color = i.getStringExtra("COLOR");
 
 
         startIdleAnimation(monster);
@@ -194,14 +196,6 @@ public class FeedMonster extends AppCompatActivity {
 
 
 
-//        if (selector ==0) {
-//            monsterSetFaceHelper(v, R.drawable.horntail, 3);
-//        } else if (selector ==1) {
-//            monsterSetFaceHelper(v, R.drawable.horns, 3);
-//        } else if (selector ==2) {
-//            monsterSetFaceHelper(v, R.drawable.batwing, 3);
-//        }
-
 
     }
 
@@ -252,6 +246,7 @@ public class FeedMonster extends AppCompatActivity {
         b.putString("FIRST", firstChoice);
         b.putString("SECOND", secondChoice);
         b.putString("THIRD", thirdChoice);
+        b.putString("COLOR", color);
 
         i.putExtras(b);
 
