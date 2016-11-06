@@ -261,7 +261,7 @@ public class FeedMe extends AppCompatActivity implements View.OnClickListener,Vi
                     try {
                         sleep(200);
                         jumpTime -= 2;
-                        experiencePoints = (int)jumpTime;
+                        //experiencePoints = (int)jumpTime;
                        experience.setProgress(experiencePoints);
 
 
