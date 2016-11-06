@@ -53,22 +53,15 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-<<<<<<< HEAD
-                    android:src="@drawable/monstercrosseye"/>
+                    android:src="@drawable/crosseye"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/toothygrin"/>
+                    android:src="@drawable/grinsmile"/>
 
             </RelativeLayout>
-||||||| merged common ancestors
-                    android:src="@drawable/monster" />
-            </LinearLayout>
-=======
-                    android:src="@drawable/body0" />
-            </LinearLayout>
->>>>>>> 4fc66bba232ee9562edf3611be95efdbcbb803e7
+
 
 
             <RelativeLayout
@@ -87,18 +80,13 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/monstercrosseye"/>
+                    android:src="@drawable/crosseye"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-<<<<<<< HEAD
-                    android:src="@drawable/toothygrin"/>
-||||||| merged common ancestors
-                    android:src="@drawable/monster2" />
-=======
-                    android:src="@drawable/body0" />
->>>>>>> 4fc66bba232ee9562edf3611be95efdbcbb803e7
+                    android:src="@drawable/grinsmile"/>
+
 
             </RelativeLayout>
 
@@ -119,18 +107,13 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-<<<<<<< HEAD
-                    android:src="@drawable/monstercrosseye"/>
-||||||| merged common ancestors
-                    android:src="@drawable/monster3" />
-=======
-                    android:src="@drawable/body0" />
->>>>>>> 4fc66bba232ee9562edf3611be95efdbcbb803e7
+                    android:src="@drawable/crosseye"/>
+
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/toothygrin"/>
+                    android:src="@drawable/grinsmile"/>
 
             </RelativeLayout>
         </ViewFlipper>
