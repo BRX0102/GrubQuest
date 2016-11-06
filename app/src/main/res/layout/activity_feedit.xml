@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textSize="22dp"
-            android:text="Feed your avatar in order of preference!"/>
+            android:text="Claim your reward and feed the beast!"/>
 
     </LinearLayout>
 
@@ -43,8 +43,8 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="315dp"
+        android:layout_height="256dp"
         android:layout_gravity="center_horizontal"
         android:id="@+id/monsterColumn"
         >
